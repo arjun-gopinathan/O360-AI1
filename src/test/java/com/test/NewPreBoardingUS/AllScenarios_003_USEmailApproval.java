@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Properties;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +27,7 @@ import com.Pages_PreBoardingUSMethods.Methods_CreateCandidatePage;
 import com.Pages_PreBoardingUSMethods.Methods_HomePage;
 import com.Utility.Log;
 import com.Utility.TriggerEmail;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.extentReports.ExtentManager;
@@ -38,7 +41,7 @@ public class AllScenarios_003_USEmailApproval extends Base_Class {
 	Log log;
 	com.Utility.ScreenShot screenshot;
 	com.Utility.ExcelReader ExcelReader;
-	
+	ExtentTest extenttest;
 	
 	@BeforeClass
 	public void reference() throws InterruptedException {
@@ -50,7 +53,11 @@ public class AllScenarios_003_USEmailApproval extends Base_Class {
 		screenshot = new com.Utility.ScreenShot(driver);
 		ExcelReader = new com.Utility.ExcelReader("USEmailApproval");		
 	}
-	
+	@BeforeMethod
+	public void setupTest(Method method) throws Exception {
+		// Start a new ExtentTest for the current test method
+		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("US Email Approval");		
+	}
 	@Test(dataProvider = "TestData",priority=2)
 	public void runAlllScenarios(Map<Object, Object> testdata, ITestContext context)
 			throws IOException, InterruptedException {

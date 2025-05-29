@@ -15,8 +15,6 @@ public class Timesheet_CancelRequestModule extends Base_Class
 {
 
 	private static By timeSheetIcon = By.xpath("//span[text()='Self Service']");
-	private static By TimesheetIcon = By.xpath("//span[text()='Timesheet']");
-
 	private static By Approvals =By.xpath("//*[contains(text(),'Approvals') and @class='item-name lvl1']");
 	private static By myTimesheet = By.xpath("//span[contains(text(),'My Timesheet')]");
 	private static By pageLoad = By.xpath("//li[contains(text(),'Day View')]");
@@ -133,7 +131,7 @@ public class Timesheet_CancelRequestModule extends Base_Class
 	
 	public boolean NavigateToApproval() throws InterruptedException 
 	{
-		click(TimesheetIcon);
+		click(timeSheetIcon);
 		click(Approvals);
 		Boolean flag = ElementDisplayed(ApprovalpageLoad);
 		

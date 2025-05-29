@@ -2,10 +2,12 @@ package com.test.LeaveModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,6 +15,7 @@ import org.testng.annotations.Test;
 import com.BasePackage.Base_Class;
 import com.Pages_LeaveModule.Leave_LeaveRequest;
 import com.Utility.Log;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.extentReports.ExtentManager;
@@ -26,7 +29,7 @@ public class AllScenarios_LeaveModule extends Base_Class {
 	TestListener TestListener;
 	com.Utility.ScreenShot screenShot;
 	Leave_LeaveRequest Leave_LeaveRequest;
-
+	ExtentTest extenttest;
 	private static By userDropDown = By.xpath("//div[@id='userDropdown']/h4");
 	private static By L_signout = By.xpath("//button[@class='dropdown-item ' and contains(text(),'Sign out')]");
 	private static By L_username = By.xpath("//input[@id='Username']");
@@ -44,7 +47,11 @@ public class AllScenarios_LeaveModule extends Base_Class {
 		Leave_LeaveRequest= new Leave_LeaveRequest();
 
 	}
-
+	@BeforeMethod
+	public void setupTest(Method method) throws Exception {
+		// Start a new ExtentTest for the current test method
+		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("Leave Module");		
+	}
 	@Test(dataProvider = "TestData")
 	public void RUNALL(Map<Object, Object> testdata, ITestContext context) throws IOException, InterruptedException {
 

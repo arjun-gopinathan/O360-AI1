@@ -31,7 +31,6 @@ public class Timeheet_WeekView extends Base_Class
 
 	        return true;
 	    }
-	 
 	 public void enterTimesheetForTheSelectedWeekDetailedView(String projectName, String module) throws InterruptedException
 	 {
 		 click(PageRepositary.projectDropDown2);
@@ -89,10 +88,6 @@ public class Timeheet_WeekView extends Base_Class
 			Log.info("Submitted Timesheet");
 
 	 }
-	 
-	 
-	 
-	 
 	public void ValidateValidTimesheetEntryAndDeleteEntry(String projectName, String moduleName, String module, String day) throws Exception
 	{
 		click(PageRepositary.timeSheetWeekView);
@@ -211,7 +206,7 @@ public class Timeheet_WeekView extends Base_Class
 	}
 	
 	
-	public boolean ValidateNavigationToWeeklyNormalView(String ProjectName2, String moduleName2, String module2) throws InterruptedException
+	public boolean ValidateNavigationToWeeklyNormalView(String ProjectName2, String moduleName, String module) throws InterruptedException
 	{
 		click(PageRepositary.timeSheetWeekView);
 		click(PageRepositary.weeklyViewDropDown);
@@ -234,15 +229,15 @@ public class Timeheet_WeekView extends Base_Class
 	
 
 		click(PageRepositary.moduleDD);
-		input(PageRepositary.moduleDropdown2, moduleName2);
-		click(By.xpath("//span[contains(text(),'"+module2+"')]"));
+		input(PageRepositary.moduleDropdown2, moduleName);
+		click(By.xpath("//span[contains(text(),'"+module+"')]"));
 		
 		click(PageRepositary.addButton);
 		
 		click(PageRepositary.addButton);
 		
 		boolean flag2 = ElementDisplayed(By.xpath("//tr[@class='ng-star-inserted']//div[contains(text(),'"+ProjectName2+"')]"));
-		boolean flag3 = ElementDisplayed(By.xpath("//tr[@class='ng-star-inserted']//span[contains(text(),'"+module2+"')]"));
+		boolean flag3 = ElementDisplayed(By.xpath("//tr[@class='ng-star-inserted']//span[contains(text(),'"+module+"')]"));
 		
 		boolean flag = flag1;
 		
@@ -252,16 +247,16 @@ public class Timeheet_WeekView extends Base_Class
 		
 	}
 	
-	public boolean ValidateErrorMessageOnGivingInvalidTimeWeeklyNormalView(String ProjectName2, String moduleName2, String module2, String day) throws InterruptedException
+	public boolean ValidateErrorMessageOnGivingInvalidTimeWeeklyNormalView(String ProjectName2, String moduleName, String module, String day) throws InterruptedException
 	{
 		click(PageRepositary.timeSheetWeekView);
 		click(PageRepositary.weeklyViewDropDown);
 		click(PageRepositary.weeklyNormalViewOption);
 		
 		select(ProjectName2, PageRepositary.weekNormViewProjectSelDropDown);
-		select(module2, PageRepositary.weekNormViewModuleSelDropdown);click(PageRepositary.moduleDD);
-		input(PageRepositary.moduleDropdown2, moduleName2);
-		click(By.xpath("//span[contains(text(),'"+module2+"')]"));
+		select(module, PageRepositary.weekNormViewModuleSelDropdown);click(PageRepositary.moduleDD);
+		input(PageRepositary.moduleDropdown2, moduleName);
+		click(By.xpath("//span[contains(text(),'"+module+"')]"));
 		
 		click(PageRepositary.addButton);
 		
@@ -309,16 +304,16 @@ public class Timeheet_WeekView extends Base_Class
 		
 	}
 	
-	public boolean ValidateValidTimeAndUploadFileWeeklyNormalView(String ProjectName2,String moduleName2, String module2, String path) throws InterruptedException
+	public boolean ValidateValidTimeAndUploadFileWeeklyNormalView(String ProjectName2,String moduleName, String module, String path) throws InterruptedException
 	{
 		click(PageRepositary.timeSheetWeekView);
 		click(PageRepositary.weeklyViewDropDown);
 		click(PageRepositary.weeklyNormalViewOption);
 		
 		select(ProjectName2, PageRepositary.weekNormViewProjectSelDropDown);
-		select(module2, PageRepositary.weekNormViewModuleSelDropdown);click(PageRepositary.moduleDD);
-		input(PageRepositary.moduleDropdown2, moduleName2);
-		click(By.xpath("//span[contains(text(),'"+module2+"')]"));
+		select(module, PageRepositary.weekNormViewModuleSelDropdown);click(PageRepositary.moduleDD);
+		input(PageRepositary.moduleDropdown2, moduleName);
+		click(By.xpath("//span[contains(text(),'"+module+"')]"));
 		
 		click(PageRepositary.addButton);
 		
@@ -351,9 +346,9 @@ public class Timeheet_WeekView extends Base_Class
 	
 	public boolean ValidateTimesheetEntryMonthView(String projectName, String module, String path) throws InterruptedException
 	{
-		//TearDown();
+		TearDown();
 		click(PageRepositary.timeSheetMonthView);
-		Thread.sleep(7000);
+		Thread.sleep(1000);
 		click(PageRepositary.pendingDayMonthView);
 		
 		Thread.sleep(1000);

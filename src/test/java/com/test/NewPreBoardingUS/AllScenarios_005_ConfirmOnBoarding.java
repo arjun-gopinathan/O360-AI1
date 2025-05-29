@@ -3,6 +3,7 @@ package com.test.NewPreBoardingUS;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -10,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -26,6 +28,7 @@ import com.Pages_PreBoardingUSMethods.Methods_PendingWithCandidatePage;
 import com.Pages_PreBoardingUSMethods.Methods_PendingWithHRPage;
 import com.Utility.Log;
 import com.Utility.TriggerEmail;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.extentReports.ExtentManager;
@@ -45,7 +48,7 @@ public class AllScenarios_005_ConfirmOnBoarding extends Base_Class {
 	
 	Methods_CreateCandidatePage methods_CreateCandidatePage;
 	Locators_CreateCandidatePage locators_CreateCandidatePage;
-	
+	ExtentTest extenttest;
 	
 	Log log;
 	com.Utility.ScreenShot screenshot;
@@ -70,7 +73,11 @@ public class AllScenarios_005_ConfirmOnBoarding extends Base_Class {
 		screenshot = new com.Utility.ScreenShot(driver);
 		ExcelReader = new com.Utility.ExcelReader("ConfirmOnBoarding");				
 	}
-	
+	@BeforeMethod
+	public void setupTest(Method method) throws Exception {
+		// Start a new ExtentTest for the current test method
+		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("Confirm On Boarding");		
+	}
 	@Test(dataProvider = "TestData", priority=6)
 	public void runAlllScenarios(Map<Object, Object> testdata, ITestContext context)
 			throws IOException, InterruptedException {

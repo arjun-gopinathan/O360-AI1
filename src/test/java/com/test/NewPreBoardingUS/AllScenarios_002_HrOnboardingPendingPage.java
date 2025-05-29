@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,6 +33,7 @@ import com.Pages_PreBoardingUSMethods.Methods_HomePage;
 import com.Pages_PreBoardingUSMethods.Methods_HrOnboardingPendingPage;
 import com.Utility.Log;
 import com.Utility.TriggerEmail;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.extentReports.ExtentManager;
@@ -41,7 +44,7 @@ public class AllScenarios_002_HrOnboardingPendingPage extends Base_Class {
 	Methods_HomePage methods_HomePage;
 	Methods_HrOnboardingPendingPage methods_HrOnboardingPendingPage;
 	Locators_HrOnboardingPendingPage locators_HrOnboardingPendingPage;
-	
+	ExtentTest extenttest;
 	Methods_CreateCandidatePage methods_CreateCandidatePage;
 	Locators_CreateCandidatePage locators_CreateCandidatePage;
 	
@@ -64,7 +67,11 @@ public class AllScenarios_002_HrOnboardingPendingPage extends Base_Class {
 		screenshot = new com.Utility.ScreenShot(driver);
 		ExcelReader = new com.Utility.ExcelReader("HrOnboardingPending");				
 	}
-	
+	@BeforeMethod
+	public void setupTest(Method method) throws Exception {
+		// Start a new ExtentTest for the current test method
+		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("Hr Onboarding Pending");		
+	}
 	@Test(dataProvider = "TestData", priority=3)
 	public void runAlllScenarios(Map<Object, Object> testdata, ITestContext context)
 			throws IOException, InterruptedException {

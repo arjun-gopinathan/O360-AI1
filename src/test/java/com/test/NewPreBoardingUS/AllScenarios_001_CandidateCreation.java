@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -27,6 +29,7 @@ import com.Pages_PreBoardingUSMethods.Methods_CreateCandidatePage;
 import com.Pages_PreBoardingUSMethods.Methods_HomePage;
 import com.Utility.Log;
 import com.Utility.TriggerEmail;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.extentReports.ExtentManager;
@@ -41,7 +44,7 @@ public class AllScenarios_001_CandidateCreation extends Base_Class {
 	Log log;
 	com.Utility.ScreenShot screenshot;
 	com.Utility.ExcelReader ExcelReader;
-
+	ExtentTest extenttest;
 	SoftAssert Assert = new SoftAssert();
 
 	// Setup method to initialize objects and perform setup
@@ -57,7 +60,11 @@ public class AllScenarios_001_CandidateCreation extends Base_Class {
 		ExcelReader = new com.Utility.ExcelReader("CandidateCreation");		
 	}
 	
-	
+	@BeforeMethod
+	public void setupTest(Method method) throws Exception {
+		// Start a new ExtentTest for the current test method
+		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("Candidate Creation");		
+	}
 
 	@Test(dataProvider = "TestData", priority=1)
 	public void runAlllScenarios(Map<Object, Object> testdata, ITestContext context)

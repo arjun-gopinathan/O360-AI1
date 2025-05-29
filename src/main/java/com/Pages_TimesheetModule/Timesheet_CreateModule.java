@@ -75,34 +75,34 @@ public class Timesheet_CreateModule extends Base_Class
 			return false;	    
 	        }
 
-	    public boolean selectDateWithinCurrentWeek(String date) throws InterruptedException {
+	    public void selectDateWithinCurrentWeek(String date) throws InterruptedException {
 	    	click(PageRepositary.clickOnDate);
 	    	Thread.sleep(1000);
 	    	click(By.xpath("//div[text()='" + date + "']"));
-			return false;
+			//return false;
 	       
 	    }
 
-	    public boolean selectDateOutsideCurrentWeek(String date1) throws InterruptedException {
+	    public void selectDateOutsideCurrentWeek(String date1) throws InterruptedException {
 	    	click(PageRepositary.clickOnDate);
 	    	Thread.sleep(1000);
 	    	click(By.xpath("//div[text()='" + date1 + "']"));
-			return false;
+			//return false;
 	    }
 
 	    public boolean clickSave() throws InterruptedException {
 	       click(PageRepositary.saveButton);
-		return false;
+		return true;
 	    }
 
 	    public boolean clickClose() throws InterruptedException {
 	    	click(PageRepositary.closeButton);
-			return false;
+			return true;
 	    }
 
 	    public boolean clickModuleSection() throws InterruptedException {
 	       click(PageRepositary.moduleSelect);
-		return false;
+		return true;
 	    }
 
 	    public boolean isMandatoryFieldErrorDisplayed() throws InterruptedException {

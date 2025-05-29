@@ -57,10 +57,6 @@ public class Timeheet_ApprovalModule extends Base_Class {
 	private static By okayButton = By.xpath("//button[text()='Ok']");
 	private static By saveWithoutSubmit = By.xpath("//button[text()='Save Without Submit']");
 	private static By saveandSubmit = By.xpath("//button[text()=' Save and Submit']");
-	private static By RejectComments = By.xpath("//textarea[@class='ng-untouched ng-pristine ng-valid']");
-	private static By Rejectbutton = By.xpath("//button[text()='Reject']");
-
-	
 	
 	private static By hideContentButton = By.xpath("//span[@class='calendar' and contains(text(),'Monday')]/parent::div");
 	private static By timesheetRemoveButton = By.xpath("//span[@title='Remove']");
@@ -70,9 +66,6 @@ public class Timeheet_ApprovalModule extends Base_Class {
 	private static By saveEntryButton = By.xpath("//button[text()='Save']");
 	private static By daysOfWeek = By.xpath("//div[@class='header ng-star-inserted']//span[contains(text(),'day')]");
 	private static By weekDateSelect = By.xpath("(//select[@class='yr-select'])[2]");
-	private static By TimesheetIcon = By.xpath("//span[text()='Timesheet']");
-
-	
 	private static By weekDateOptions = By.xpath("(//select[@class='yr-select'])[2]/option");
 	private static By weekdayList = By.xpath("//ul[@class='item2']/li[@class='multiselect-item-checkbox ng-star-inserted']");
 	private static By invalidHoursErrorMessage2 = By.xpath("//div[@class='eform-validation ng-star-inserted']");
@@ -135,7 +128,7 @@ public class Timeheet_ApprovalModule extends Base_Class {
 	
 	public boolean NavigateToApproval() throws InterruptedException 
 	{
-		click(TimesheetIcon);
+		click(timeSheetIcon);
 		click(Approvals);
 		Boolean flag = ElementDisplayed(ApprovalpageLoad);
 		
@@ -176,11 +169,6 @@ public class Timeheet_ApprovalModule extends Base_Class {
 	{
 		click(RejectButton);
 		Thread.sleep(1000);
-		input(RejectComments, "Rejected");
-		Thread.sleep(1000);
-		click(Rejectbutton);
-		Thread.sleep(1000);
-
 		Boolean flag = ElementDisplayed(RejectButton);
 		Log.info("System or PMO successfully rejected the timesheet.");
 		return flag;
@@ -191,7 +179,7 @@ public class Timeheet_ApprovalModule extends Base_Class {
 
 	public boolean NavigateToCancelRequest() throws InterruptedException 
 	{   
-		click(TimesheetIcon);
+		click(timeSheetIcon);
 		click(CancelRequest);
 		Thread.sleep(1000);
 		Boolean flag = ElementDisplayed(CancelRequestLoad);
@@ -336,8 +324,8 @@ public class Timeheet_ApprovalModule extends Base_Class {
 				try {
 					click(userDropDown);
 					click(L_signout);
-					String PMOUserName = configloader().getProperty("ApproverUsername");
-					String PMOPassword = configloader().getProperty("ApproverPassword");
+					String PMOUserName = configloader().getProperty("PMOUserName");
+					String PMOPassword = configloader().getProperty("PMOPassword");
 					String UserName = configloader().getProperty("UserName");
 					String Password = configloader().getProperty("Password");
 					input(L_username, PMOUserName);

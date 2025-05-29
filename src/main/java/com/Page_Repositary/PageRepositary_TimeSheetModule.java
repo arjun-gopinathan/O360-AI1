@@ -5,6 +5,16 @@ import org.openqa.selenium.By;
 
 public class PageRepositary_TimeSheetModule
 {
+	public By selectAll = By.xpath("//div[normalize-space()='Select All']");
+	public By SubmitBtn = By.xpath("//button[text()='Submit']");
+	public By feedBackEmoji = By.xpath("//input[@id='nothappy']");
+	public By saveAndSubmit = By.xpath("//button[normalize-space()='Save and Submit']");
+	public By enterHours2 = By.xpath("(//input[@name='hours'])[2]");
+	public By enterHours3 = By.xpath("(//input[@name='hours'])[3]");
+	public By enterHours4 = By.xpath("(//input[@name='hours'])[4]");
+	public By enterHours5 = By.xpath("(//input[@name='hours'])[5]");
+	public By enterHours6 = By.xpath("(//input[@name='hours'])[6]");
+	public By enterHours7 = By.xpath("(//input[@name='hours'])[7]");
 	
 	//TimeSheet List Module
 	public By timesheetSection= By.xpath("//span[text()='Self Service']");
@@ -17,7 +27,11 @@ public class PageRepositary_TimeSheetModule
 	public By downloadTimesheetButton= By.xpath("//i[@title='Download Timesheet']");
 	public By applyLeaveButton= By.xpath("//button[text()='Apply Leave']");
 	public By clickOk= By.xpath("//button[text()='Ok']");
-	
+	public By PopupDisplayedCovid = By.xpath("//div/button[1][text()=' Remind Me Later']");
+	public By OkBtnCovid = By.xpath("//div/button[1][text()=' Remind Me Later']");
+	public By PopupDisplayedDesktop = By.xpath("//*[@id=\"modal-basic-title\" and text()=' Desktop Notifications ']");
+    public By dashBoard = By.xpath("//a[normalize-space()='Dashboard']");
+    public By OkBtnDesktop = By.xpath("//div/button[2][text()='OK']");
 	
 	//TimeSheet Create/Edit/Delete Module
 	public By projectDropdown = By.id("Project");
@@ -118,35 +132,20 @@ public class PageRepositary_TimeSheetModule
 	public By moduleOptions2 = By.xpath("(//select[@class='mdl-select'])[1]/option");
 	//public By moduleSelectOption = By.xpath("//option[text()=' Design/Development ']");
 	public By selectDayDropDown = By.xpath("//span[@class='dropdown-down']");
-	public By selectAll = By.xpath("//div[normalize-space()='Select All']");
 	public By selectWeek = By.xpath("//div[text()=' 2024-Oct-13 - 2024-Oct-19 ']");
 	public By selctionOfWeek = By.xpath("//span[text()=' 6 ']");
 	//public By selectDay = By.xpath("//div[text()='Monday']");
 	public By addButton = By.xpath("//button[@type='button' and text()=' ADD ']");
 	public By enterHours1 = By.xpath("(//input[@name='hours'])[1]");
-	public By enterHours2 = By.xpath("(//input[@name='hours'])[2]");
-	public By enterHours3 = By.xpath("(//input[@name='hours'])[3]");
-	public By enterHours4 = By.xpath("(//input[@name='hours'])[4]");
-	public By enterHours5 = By.xpath("(//input[@name='hours'])[5]");
-	public By enterHours6 = By.xpath("(//input[@name='hours'])[6]");
-	public By enterHours7 = By.xpath("(//input[@name='hours'])[7]");
-	
+	//public By enterHours2 = By.xpath("(//input[@name='hours'])[2]");
 	public By enterDescription1 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[1]");
-	public By enterDescription2 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[2]");
-	public By enterDescription3 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[3]");
-	public By enterDescription4 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[4]");
-	public By enterDescription5 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[5]");
-	public By enterDescription6 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[6]");
-	public By enterDescription7 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[7]");
+	//public By enterDescription2 = By.xpath("(//textarea[@class='ng-untouched ng-pristine ng-valid ng-star-inserted'])[2]");
 	public By invalidHoursErrorMessage1 = By.xpath("(//div[@class='modal-body']/div/span)[6]");
 	public By okayButton = By.xpath("//button[text()='Ok']");
 	public By saveWithoutSubmit = By.xpath("//button[text()='Save Without Submit']");
-	public By saveAndSubmit = By.xpath("//button[normalize-space()='Save and Submit']");
 	//public By hideContentButton = By.xpath("//span[@class='calendar' and contains(text(),'Monday')]/parent::div");
 	public By timesheetRemoveButton = By.xpath("//span[@title='Remove']");
 	public By confirmYes1 = By.xpath("//button[text()='Yes']");
-	public By feedBackEmoji = By.xpath("//input[@id='nothappy']");
-	public By SubmitBtn = By.xpath("//button[text()='Submit']");
 	public By moduleDD = By.xpath("//input[@aria-label='EmployeeFullName']");
 	public By modalElement = By.xpath("(//div[@class='modal-content'])[1]");
 	public By uploadedFile = By.xpath("//div[@class='custom-file']//following-sibling::span[contains(@class,'badge')]");
@@ -201,7 +200,25 @@ public class PageRepositary_TimeSheetModule
 	public By finalSubmissionOfTimesheet = By.xpath("//button[text()='Submit']");
 
 	
+	
+	public By ifmondayholiday = By.xpath("//table[@class='days_lists']/thead/tr/td[2]/li/span[contains(text(),'H')]");
+	public By iftuesdayholiday = By.xpath("//table[@class='days_lists']/thead/tr/td[3]/li/span[contains(text(),'H')]");
+	public By ifwednesdayholiday = By.xpath("//table[@class='days_lists']/thead/tr/td[4]/li/span[contains(text(),'H')]");
+	public By ifthursdayholiday = By.xpath("//table[@class='days_lists']/thead/tr/td[5]/li/span[contains(text(),'H')]");
+	public By iffridayholiday = By.xpath("//table[@class='days_lists']/thead/tr/td[6]/li/span[contains(text(),'H')]");
+	
   
+	public By ifmondayleave = By.xpath("//table[@class='days_lists']/thead/tr/td[2]/li/span[contains(text(),'L')]");
+	public By iftuesdayleave = By.xpath("//table[@class='days_lists']/thead/tr/td[3]/li/span[contains(text(),'L')]");
+	public By ifwednesdayleave = By.xpath("//table[@class='days_lists']/thead/tr/td[4]/li/span[contains(text(),'L')]");
+	public By ifthursdayleave = By.xpath("//table[@class='days_lists']/thead/tr/td[5]/li/span[contains(text(),'L')]");
+	public By iffridayleave = By.xpath("//table[@class='days_lists']/thead/tr/td[6]/li/span[contains(text(),'L')]");
+	
+	public By iftuesdayworking = By.xpath("//table[@class='days_lists']/thead/tr/td[3]");
+	public By ifwednesdayworking = By.xpath("//table[@class='days_lists']/thead/tr/td[4]");
+	public By ifthursdayworking = By.xpath("//table[@class='days_lists']/thead/tr/td[5]");
+	public By iffridayworking= By.xpath("//table[@class='days_lists']/thead/tr/td[6]");
+	
   //select[@title='Select month']
   //option[text()='Jun']
   //span[text()='All Projects']

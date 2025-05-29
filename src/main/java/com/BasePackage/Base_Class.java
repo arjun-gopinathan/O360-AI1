@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,10 +28,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.Locators_PreBoardingUS.Locators_HomePage;
+import com.Page_Repositary.PageRepositary_EmployeeModule;
 import com.Utility.ExcelReader;
 import com.Utility.Log;
 import com.aventstack.extentreports.Status;
@@ -37,8 +44,9 @@ import com.extentReports.ExtentTestManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base_Class {
-
+	PageRepositary_EmployeeModule Locators=new PageRepositary_EmployeeModule();
 	Locators_HomePage locators = new Locators_HomePage();
+//	Locators_Approve_Process locators = new Locators_Approve_Process();
 	public static RemoteWebDriver driver = null;
 
 	public static WebDriver getDriver() {
@@ -65,7 +73,88 @@ public class Base_Class {
 		properties.load(File);
 		return properties;
 	}
+	public void ifemptbelongstootherbu() {
+        try {
+               WebElement popupElement = driver.findElement(Locators.slectempdateoftransferyes);
+               WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
+               if (popupElement.isDisplayed()) {
+                     System.out.println("Popup displayed for Employee belongs to other BU... Clicking Yes");
+                     driver.findElement(Locators.slectempdateoftransferyes).click();
+                     WaitForLoaderToDisappear();
+                     ExtentTestManager.getTest().log(Status.PASS, "Handled Popup displayed for Employee belongs to other BU");
+                     Log.info("Employee belongs to other BU Popup");
+                    // click(DesktopNot);
+               }
+        } catch (Exception e) {
+               System.out.println("Employee belongs to other BU Popup is not displayed");
+        }
+ }
+	public static void waitForSpinnerToDisappear(WebDriver driver, int timeoutMinutes, int pollingSeconds) {
+		Wait<WebDriver> fluentWait = new FluentWait<>(driver).withTimeout(Duration.ofMinutes(timeoutMinutes)) // Max
+				.pollingEvery(Duration.ofSeconds(pollingSeconds)) // Polling interval
+				.ignoring(NoSuchElementException.class) // Ignore if spinner is not found
+				.ignoring(StaleElementReferenceException.class); // Handle dynamic elements
+		fluentWait.until(ExpectedConditions.invisibilityOfElementLocated(loader)); // Wait for spinner to disappear
+	}
+	public void handlePopupdate() {
+        try {
+               WebElement popupElement = driver.findElement(Locators.slectempdateoftransferyes);
+              // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
+               if (popupElement.isDisplayed()) {
+            	  // driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                     System.out.println("Popup displayed for Date Selection.. Clicking OK");
+                     driver.findElement(Locators.slectempdateoftransferyes).click();
+                    //WaitForLoaderToDisappear();
+                     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                     ExtentTestManager.getTest().log(Status.PASS, "Handled Date Popup");
+                     Log.info("Handling Date Selection Popup");
+               }
+        } catch (Exception e) {
+               System.out.println("Popup is not displayed for Date Selection");
+        }
+ }
+	public static void checkDropdown(By dropdownLocator) {
+		try {
+			// Set implicit wait for general element handling
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+			// Wait up to 2 minutes for the dropdown to be enabled and have values
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(2));
+
+			boolean isDropdownReady = wait.until(d -> {
+				WebElement dropdownElement = d.findElement(dropdownLocator);
+				Select dropdown = new Select(dropdownElement);
+				List<WebElement> options = dropdown.getOptions();
+
+				return dropdownElement.isEnabled() && !options.isEmpty();
+			});
+
+			if (isDropdownReady) {
+				System.out.println("Dropdown has values and is enabled. Continuing execution...");
+			} else {
+				throw new RuntimeException("Test failed: Dropdown is empty or disabled after waiting for 2 minutes!");
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			throw new RuntimeException("Dropdown check failed due to an exception.");
+		}
+	}
+
+
+	public static void SignInAsEmployee(String userName) throws InterruptedException, IOException {
+		// Fetch the employee password from properties or test data (assuming it is
+		// stored)
+		String password = configloader().getProperty("Password");
+		// Login with the provided username and password
+		input(L_username, userName);
+		input(L_password, password);
+		click(L_SignIn);
+		ExtentTestManager.getTest().log(Status.PASS, "Successfully logged in as employee: " + userName);
+		Log.info("Successfully logged in as employee: " + userName);
+		Base_Class base_Class = new Base_Class();
+		base_Class.handlePopupCovid();
+		base_Class.handlePopupDesktop();
+	}
 	public static void SetUp(String UserName) throws IOException, InterruptedException {
 
 		String Browser = configloader().getProperty("Browser");

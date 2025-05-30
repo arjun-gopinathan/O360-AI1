@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_Employeeapplicationtracker"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetEditDeleteModule"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_Employee_Dependant_tab"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_Transfer_Approvals"/>
+      <class name="com.test.ProjectModule.Allscenerios_Project_Project"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimeSheet_CancelRequests"/>
+      <class name="com.test.TicketModule.TC_TicketCreation"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_Resign_Req_Creation"/>
+      <class name="com.test.LeaveModule.AllScenarios_LeaveModule"/>
+      <class name="com.test.LeaveModule.AllScenarios_EWCLeaveModule"/>
+      <class name="com.test.TicketModule.TC_MyTicket"/>
+      <class name="com.test.TicketModule.TC_TicketDashboard"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetWeekandMonth"/>
+      <class name="com.test.LeaveModule.AllScenarios_EWCLeave_CompOffCredit"/>
+      <class name="com.test.ProjectModule.Allscenerios_Project_projecttypesfixed"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetListModule"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetCreateModule"/>
+      <class name="com.ExpenseModule.AllScenarios_ExpenseModule"/>
+      <class name="com.test.ProjectModule.Allscenerios_Project_Projecttypes"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_Resign_Req_Approval"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimeSheet_Approvals"/>
+      <class name="com.test.NewPreBoardingUS.AllScenarios_003_USEmailApproval"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_Approve_EmployeeProfile"/>
+      <class name="com.test.ProjectModule.Allscenarios_Project_Client"/>
+      <class name="com.test.TicketModule.TC_TicketOnBehalf"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_Quick_TransferReject"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_EmployeeInitiatedTransfer"/>
+      <class name="com.test.NewPreBoardingUS.AllScenarios_004_ConfirmPreboarding"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_EmployeeProfile"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_Transfer_Reject"/>
+      <class name="com.test.NewPreBoardingUS.AllScenarios_002_HrOnboardingPendingPage"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_HrInitiatedTransfer"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetOnBehalf"/>
+      <class name="com.test.NewPreBoardingUS.AllScenarios_001_CandidateCreation"/>
+      <class name="com.test.TicketModule.TC_AssignedTickets"/>
+      <class name="com.test.NewPreBoardingUS.AllScenarios_005_ConfirmOnBoarding"/>
+      <class name="com.test.employeeapplicationtrackermodule.AllScenarios_QuickTransferApprovals"/>
+      <class name="com.test.TicketModule.TC_QuickTicket"/>
+      <class name="com.test.user.EmpProfile.AllScenarios_Employee_Dependant_Approval"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

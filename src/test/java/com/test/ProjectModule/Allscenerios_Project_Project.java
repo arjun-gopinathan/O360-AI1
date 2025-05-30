@@ -60,10 +60,21 @@ public class Allscenerios_Project_Project extends Base_Class{
        //     js.executeScript("arguments[0].scrollIntoView();", element);
        //}
        @BeforeMethod
-      	public void setupTest(Method method) throws Exception {
-      		// Start a new ExtentTest for the current test method
-      		extenttest = ExtentTestManager.startTest(method.getName()).assignCategory("Project Project");		
-      	}
+   	public void setupTest(Method method) {
+   	    // Get the test class name
+   	    String className = method.getDeclaringClass().getSimpleName();
+   	    
+   	    // Get the full package name of the test class
+   	    String packageName = method.getDeclaringClass().getPackage().getName();
+
+   	    // Extract module name from package (e.g., com.test.LeaveModule -> LeaveModule)
+   	    String[] packageParts = packageName.split("\\.");
+   	    String moduleName = packageParts[packageParts.length - 1]; // Last part of package is module
+
+   	    // Start the test and assign category dynamically
+   	    extenttest = ExtentTestManager.startTest(method.getName())
+   	                 .assignCategory(moduleName); // Example: "LeaveModule"
+   	}
        @Test(dataProvider = "TestData")
        public void RUNALL(Map<Object, Object> testdata, ITestContext context) throws IOException, InterruptedException {
 

@@ -73,6 +73,24 @@ public class Base_Class {
 		properties.load(File);
 		return properties;
 	}
+	public WebElement waitForElementClickable(By by) {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	        return wait.ignoring(StaleElementReferenceException.class)
+	                   .until(ExpectedConditions.elementToBeClickable(by));
+	    } catch (Exception e) {
+	        Log.info(e.getMessage());
+	    }
+	    return null;
+	}
+	public static void ElementToBeVisible(By element) {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+	    } catch (Exception e) {
+	        Log.info(e.getMessage());
+	    }
+	}
 	public void ifemptbelongstootherbu() {
         try {
                WebElement popupElement = driver.findElement(Locators.slectempdateoftransferyes);

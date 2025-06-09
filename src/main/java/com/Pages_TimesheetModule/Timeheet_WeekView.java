@@ -1,7 +1,15 @@
 package com.Pages_TimesheetModule;
 
+import java.time.Duration;
+import java.util.List;
+
+import javax.naming.ldap.PagedResultsResponseControl;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v128.page.Page;
 
 import com.BasePackage.Base_Class;
 import com.Utility.Log;
@@ -24,7 +32,9 @@ public class Timeheet_WeekView extends Base_Class
 			 click(PageRepositary.yearSelection);
 	        click(PageRepositary.yearWeekSelection);
 	        //Thread.sleep(1000);
-		    click(By.xpath("//option[contains(text(),'"+MonthWeek+"')]"));
+	        //click(By.xpath("//option[normalize-space(text()) = '"+MonthWeek+"']"));
+	        select(MonthWeek, PageRepositary.yearWeekSelection);
+		    //click(By.xpath("//option[contains(text(),'"+MonthWeek+"')]"));
 		   // Thread.sleep(1000);
 	        click(PageRepositary.yearWeekSelection);
 
@@ -149,16 +159,23 @@ public class Timeheet_WeekView extends Base_Class
 		
 		input(PageRepositary.enterDescription1,"Test Automation." + Keys.TAB);
 	
-		click(PageRepositary.saveWithoutSubmit);
+		//click(PageRepositary.saveWithoutSubmit);
+		JavascriptClick(PageRepositary.saveWithoutSubmit, driver);
+		
+		// week view ends
+		
+		//day views starts
 		Thread.sleep(3000);
 		click(PageRepositary.timeSheetDayView);
 		click(PageRepositary.selectDateRange);
+		
 		 Thread.sleep(1000);
 		 click(PageRepositary.selectMonth);
 	      // Thread.sleep(3000);
-	       click(By.xpath("//option[contains(text(),'"+DayMonth+"')]"));
+		 select(DayMonth, PageRepositary.selectMonth);
+	       //click(By.xpath("//option[contains(text(),'"+DayMonth+"')]"));
 	       Thread.sleep(1000);
-		    click(By.xpath("//span[contains(text(),'"+MonthDay+"')]"));
+		    click(By.xpath("//span[normalize-space(text())='"+MonthDay+"']"));
 		   Thread.sleep(1000);
 		   click(PageRepositary.ClickOnDateRange);
 		   Thread.sleep(2000);
@@ -188,7 +205,7 @@ public class Timeheet_WeekView extends Base_Class
 		
 		click(By.xpath("//div[text()='"+day+"']"));
 		click(PageRepositary.addButton);
-		input(PageRepositary.enterHours1, "45" + Keys.TAB);
+		input(PageRepositary.enterHours1, "45"+Keys.TAB);
 		Boolean flag = ElementDisplayed(PageRepositary.invalidHoursErrorMessage1);
 		
 		click(PageRepositary.okayButton);
@@ -196,7 +213,8 @@ public class Timeheet_WeekView extends Base_Class
 		input(PageRepositary.enterHours1, "08" + Keys.TAB);
 		
 		input(PageRepositary.enterDescription1,"Test Automation." + Keys.TAB);
-		click(PageRepositary.saveWithoutSubmit);
+		//click(PageRepositary.saveWithoutSubmit);
+		JavascriptClick(PageRepositary.saveWithoutSubmit, driver);
 		Thread.sleep(3000);
 		click(By.xpath("//div[@class='header ng-star-inserted']//span[contains(text(),'"+day+"')]/parent::div"));
 		click(PageRepositary.timesheetRemoveButton);
@@ -311,7 +329,8 @@ public class Timeheet_WeekView extends Base_Class
 		click(PageRepositary.weeklyNormalViewOption);
 		
 		select(ProjectName2, PageRepositary.weekNormViewProjectSelDropDown);
-		select(module, PageRepositary.weekNormViewModuleSelDropdown);click(PageRepositary.moduleDD);
+		select(module, PageRepositary.weekNormViewModuleSelDropdown);
+		click(PageRepositary.moduleDD);
 		input(PageRepositary.moduleDropdown2, moduleName);
 		click(By.xpath("//span[contains(text(),'"+module+"')]"));
 		
@@ -346,7 +365,7 @@ public class Timeheet_WeekView extends Base_Class
 	
 	public boolean ValidateTimesheetEntryMonthView(String projectName, String module, String path) throws InterruptedException
 	{
-		TearDown();
+		TearDown("", "");
 		click(PageRepositary.timeSheetMonthView);
 		Thread.sleep(1000);
 		click(PageRepositary.pendingDayMonthView);
@@ -383,36 +402,283 @@ public class Timeheet_WeekView extends Base_Class
 		
 	}
 	
-	public void TearDown() throws InterruptedException
+	public void TearDown(String m, String d) throws InterruptedException
 	{
-		Thread.sleep(2000);
-		click(PageRepositary.timeSheetDayView);
-		String[] list1 = {"MON", "TUE", "WED", "THU", "FRI"};
 		
-		for (int i=0;i<list1.length;i++)
-		{
-			By weekDay = By.xpath("//td[contains(text(),'"+list1[i]+"')]");
-			click(weekDay);
-			try
-			{
-			boolean flag = ElementDisplayed(PageRepositary.timesheetDeleteButtonDayView);
-			if (flag)
-			{
-				click(PageRepositary.timesheetDeleteButtonDayView);
-				click(PageRepositary.confirmDeleteTimesheetButton);
-				ExtentTestManager.getTest().log(Status.PASS, "Timesheet for " + list1[i] + " deleted!");
-				Log.info("Timesheet for " + list1[i] + " deleted!");
-				Thread.sleep(1000);
-			}
-			
-			}
-			
-			catch(Exception e1)
-			{
-				Log.info("No timesheet saved for " + list1[i] + "!");
-			}
+		click(PageRepositary.timeSheetDayView);
+		click(PageRepositary.dateRange);
+		
+		String month = m;
+		if (m.length() > 3) {
+            month = m.substring(0, 4);
+        }
+		
+		select(month, PageRepositary.monthSelect);
+		JavascriptClick(PageRepositary.weekRange(d), driver);
+		
+		List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI");
+
+	    for (String day : days) {
+	        try {
+	            List<WebElement> leaveElements = driver.findElements(PageRepositary.Leave(day));
+	            List<WebElement> holidayElements = driver.findElements(PageRepositary.Holiday(day));
+
+	            boolean isLeaveVisible = !leaveElements.isEmpty() && leaveElements.get(0).isDisplayed();
+	            boolean isHolidayVisible = !holidayElements.isEmpty() && holidayElements.get(0).isDisplayed();
+	            if (!isLeaveVisible && !isHolidayVisible) {
+	            	JavascriptClick(PageRepositary.cell(day), driver);
+	            	JavascriptClick(PageRepositary.dayViewDeleteLog, driver);
+	            	click(PageRepositary.dayViewOK);
+	            }
+
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
+	    }
+	    
+	    Thread.sleep(Duration.ofSeconds(5));
+		
+		
+	}
+	
+	public boolean validate1(String year, String month, String weekViewRange, String project, String moduleName) throws InterruptedException {
+		click(PageRepositary.weekViewOption);
+		click(PageRepositary.weekScreenView);
+		select("Weekly Detail View", PageRepositary.weekScreenView);
+		select(year, PageRepositary.year);
+		select(month, PageRepositary.month);
+		select(weekViewRange, PageRepositary.weekrange);
+		
+		select(project, PageRepositary.projectName);
+		
+		input(PageRepositary.moduleName, moduleName);
+		Thread.sleep(Duration.ofSeconds(3));
+		click(PageRepositary.moduleNameOpt(moduleName));
+		
+		click(PageRepositary.selectDays);
+		String[] days = {"Monday", "Tuesday", "Wednesday"};
+		for(String day : days) {
+			click(PageRepositary.selectDaysOpt(day));
 		}
 		
+		click(PageRepositary.add);
+		
+		/**List<WebElement> hours = driver.findElements(PageRepositary.dayHourLog());
+		for(int i=0; i<hours.size(); i++) {
+			hours.get(i).sendKeys("08");
+			Thread.sleep(Duration.ofSeconds(3));
+		}*/
+		
+		for(String day : days) {
+			input(PageRepositary.dayHoursLog(day), "8");
+			input(PageRepositary.dayDescription(day), day);
+		}
+		
+		//input(PageRepositary.dayDescription, "data");
+		
+		Thread.sleep(Duration.ofSeconds(3));
+		JavascriptClick(PageRepositary.saveWithOutSubmit, driver);
+		
+		boolean flag = ElementDisplayed(PageRepositary.exp_saveMsg);
+		return flag;
+		
+	}
+	
+	public boolean validate2(String year, String month, String weekViewRange, String project, String moduleName) throws InterruptedException {
+		click(PageRepositary.dayViewOption);
+		click(PageRepositary.weekViewOption);
+		click(PageRepositary.weekScreenView);
+		select("Weekly Detail View", PageRepositary.weekScreenView);
+		select(year, PageRepositary.year);
+		select(month, PageRepositary.month);
+		select(weekViewRange, PageRepositary.weekrange);
+		
+		/*select(" Projectone ", PageRepositary.projectName);
+		
+		input(PageRepositary.moduleName, "Prod");
+		Thread.sleep(Duration.ofSeconds(3));
+		click(PageRepositary.moduleNameOpt("Prod"));*/
+		
+		String[] days = {"Thursday", "Friday"};
+		for(String day : days) {
+			click(PageRepositary.addIconInDay(day));
+			select(project, PageRepositary.moduleProjectname);
+			
+			input(PageRepositary.moduleModuleName, moduleName);
+			Thread.sleep(Duration.ofSeconds(3));
+			click(PageRepositary.moduleNameOpt(moduleName));
+			
+			click(PageRepositary.moduleAdd);
+			
+			Thread.sleep(Duration.ofSeconds(2));
+		}
+		
+		for(String day : days) {
+			input(PageRepositary.dayHoursLog(day), "8");
+			input(PageRepositary.dayDescription(day), day);
+		}
+		
+		
+		
+		Thread.sleep(Duration.ofSeconds(3));
+		JavascriptClick(PageRepositary.saveWithOutSubmit, driver);
+		
+		boolean flag = ElementDisplayed(PageRepositary.exp_saveMsg);
+		
+		return flag;
+		
+	}
+	
+	public boolean validation3(String m, String d) throws InterruptedException {
+		
+		JavascriptClick(PageRepositary.weekViewOption, driver);
+		JavascriptClick(PageRepositary.dayViewOption, driver);
+		click(PageRepositary.dateRange);
+		
+		String month= m;
+		if (m.length() > 3) {
+            month = m.substring(0, 4);
+        }
+		select(month, PageRepositary.monthSelect);
+		JavascriptClick(PageRepositary.weekRange(d), driver);
+		
+	    List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI");
+
+	    for (String day : days) {
+	        try {
+	            List<WebElement> leaveElements = driver.findElements(PageRepositary.Leave(day));
+	            List<WebElement> holidayElements = driver.findElements(PageRepositary.Holiday(day));
+
+	            boolean isLeaveVisible = !leaveElements.isEmpty() && leaveElements.get(0).isDisplayed();
+	            boolean isHolidayVisible = !holidayElements.isEmpty() && holidayElements.get(0).isDisplayed();
+	            if (!isLeaveVisible && !isHolidayVisible) {
+	               JavascriptClick(PageRepositary.cell(day), driver);
+	               JavascriptClick(PageRepositary.dayViewnewAdd, driver);
+	               select("Projectone", PageRepositary.dayViewprojectName);
+	               input(PageRepositary.dayViewmodulename, "Prod");
+	               click(PageRepositary.moduleNameOpt("Prod"));
+	               input(PageRepositary.dayViewHourLog, "08");
+	               input(PageRepositary.dayViewMinLog, "00");
+	               click(PageRepositary.dayViewSave);
+	            }
+
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
+	    }
+	    
+	    
+	    JavascriptClick(PageRepositary.dayViewSubmit, driver);
+	    Thread.sleep(Duration.ofSeconds(3));
+	    click(PageRepositary.dayViewOK);
+	    
+	    boolean flag = ElementDisplayed(PageRepositary.dayViewCancelRequest);
+	    Thread.sleep(Duration.ofSeconds(3));
+	    
+	    
+		return flag;
+	   
+	}
+	
+	public boolean validation4() throws InterruptedException {
+	    JavascriptClick(PageRepositary.dayViewCancelRequest, driver);
+	    input(PageRepositary.dayViewCancelRequestReason, "data");
+	    click(PageRepositary.dayViewModuleCancelRequest);
+	    boolean flag = ElementDisplayed(PageRepositary.exp_dayViewCancelRequest);
+		return flag;
+	   
+	}
+	
+	public boolean validation5(String pmo, String pwd, String empName) throws InterruptedException {
+		
+		input(PageRepositary.username, pmo);
+		input(PageRepositary.password, pwd);
+		click(PageRepositary.signin);
+		
+		click(PageRepositary.timesheet);
+		click(PageRepositary.cancelRequest);
+		click(PageRepositary.searchBtn);
+		input(PageRepositary.searchValue, empName);
+		click(PageRepositary.moduleSearchBtn);
+		
+		WebElement scrollableTable = driver.findElement(By.className("responsive-table"));
+
+        // Scroll 200px to the right
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollLeft += 700;", scrollableTable);
+		
+		click(PageRepositary.approve(empName));
+		click(PageRepositary.dayViewOK);
+	    
+	    boolean flag = ElementDisplayed(PageRepositary.exp_approvedMessage);
+	    
+		return flag;
+	   
+	}
+	
+	public boolean validation6(String un, String pwd, String m, String day) throws InterruptedException {
+		
+		input(PageRepositary.username, un);
+		input(PageRepositary.password, pwd);
+		click(PageRepositary.signin);
+		
+		click(PageRepositary.selfService);
+		click(PageRepositary.myTimesheet);
+		click(PageRepositary.dayViewOption);
+		click(PageRepositary.dateRange);
+		
+		String month= m;
+		if (m.length() > 3) {
+            month = m.substring(0, 4);
+        }
+		
+		select(month, PageRepositary.monthSelect);
+		JavascriptClick(PageRepositary.weekRange(day), driver);
+		
+		boolean flag = false;
+		
+		try {
+			flag = !ElementDisplayed(PageRepositary.dayViewCancelRequest);
+		} catch (Exception e) {
+			flag = true;
+		}
+		
+		JavascriptClick(PageRepositary.dayViewSubmit, driver);
+	    Thread.sleep(Duration.ofSeconds(3));
+	    click(PageRepositary.dayViewOK);
+	    JavascriptClick(PageRepositary.dayViewCancelRequest, driver);
+	    input(PageRepositary.dayViewCancelRequestReason, "data");
+	    click(PageRepositary.dayViewModuleCancelRequest);
+	    
+		
+		return flag;
+	   
+	}
+	
+	public boolean validation7(String pmo, String pwd, String empName) throws InterruptedException {
+		input(PageRepositary.username, pmo);
+		input(PageRepositary.password, pwd);
+		click(PageRepositary.signin);
+		
+		click(PageRepositary.timesheet);
+		click(PageRepositary.cancelRequest);
+		click(PageRepositary.searchBtn);
+		input(PageRepositary.searchValue, empName);
+		click(PageRepositary.moduleSearchBtn);
+		
+		WebElement scrollableTable = driver.findElement(By.className("responsive-table"));
+
+        // Scroll 200px to the right
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollLeft += 700;", scrollableTable);
+		
+		click(PageRepositary.reject(empName));
+		input(PageRepositary.comment, "data");
+		click(PageRepositary.moduleReject);
+	    
+	    boolean flag = ElementDisplayed(PageRepositary.exp_rejectMessage);
+	    
+		return flag;
 	}
 
 }

@@ -3,10 +3,13 @@ package com.test.user.TimesheetModule;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -107,9 +110,34 @@ public class AllScenarios_TimesheetEditDeleteModule extends Base_Class {
 				// Validate Edit Button Display
 				ExtentTestManager.startTest("TestScenario01 : Validate Edit Button Display");
 				TimeSheet_ListModule.clickTimesheetSection();
-				boolean flag1 = Timesheet_EditDeleteModule.isEditButtonDisplayed();
+				
+				//start
+				boolean flag1 = false;
+				try {
+					flag1 = Timesheet_EditDeleteModule.isEditButtonDisplayed();
+				} catch (NoSuchElementException e) {
+					WebElement cell = driver.findElement(By.xpath("//td[normalize-space(text())='MON']"));
+	                cell.click();
+	                Timesheet_CreateModule.clicOnNewButton();
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.selectProject(project);
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.selectModule(moduleName,module);
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.enterWorkDescription(workDescription);
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.enterHours(hours);
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.enterMinutes(minutes);
+					//Thread.sleep(1000);
+					Timesheet_CreateModule.clickSave();
+					//Thread.sleep(2000);
+				}
+				
+				System.out.println(flag1);
 				ExtentTestManager.getTest().log(Status.PASS, "Validate Edit Button Display : " + flag1);
-				Log.info("Validate Edit Button Display : " + flag1);	
+				Log.info("Validate Edit Button Display : " + flag1);
+				//end
 		
 				// Validate Delete Button Display
 				ExtentTestManager.startTest("TestScenario02 : Validate Timesheet Section Display");

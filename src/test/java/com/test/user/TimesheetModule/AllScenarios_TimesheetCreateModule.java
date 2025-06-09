@@ -3,10 +3,12 @@ package com.test.user.TimesheetModule;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
@@ -155,7 +157,7 @@ public class AllScenarios_TimesheetCreateModule extends Base_Class {
 			Thread.sleep(6000);
 			Timesheet_CreateModule.clicOnNewButton();
 			Thread.sleep(1000);
-			Timesheet_CreateModule.uploadFile("\\src\\test\\resources\\Screenshot 2024-09-06 151619.png");
+			Timesheet_CreateModule.uploadFile("\\src\\test\\resources\\dummy.png");
 	   	 	Thread.sleep(1000);
 	   	 	Timesheet_CreateModule.isPDFRestrictionErrorDisplayed();
 			boolean flag4 = Timesheet_CreateModule.clickClose();
@@ -180,487 +182,81 @@ public class AllScenarios_TimesheetCreateModule extends Base_Class {
 			Log.info("Test Close Button Functionality : " + flag5);
 			
 			//Test BVA
-			ExtentTestManager.startTest("TestScenario06 : Test BVA");
-			//TimeSheet_ListModule.clickTimesheetSection();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.clicOnNewButton();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectProject(project);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectModule(moduleName,module);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterWorkDescription(workDescription);
-			Thread.sleep(1000);
-			int[] testValues = {-1};
-		    for (int hours1 : testValues) {
-		    Timesheet_CreateModule.enterHours(String.valueOf(hours1));
-		    Thread.sleep(1000);
-		    //Timesheet_CreateModule.clickSave();
-		    boolean flag6 = Timesheet_CreateModule.clickClose();
-		    Thread.sleep(3000);
-			ExtentTestManager.getTest().log(Status.PASS, "Test BVA : " + flag6);
-			Log.info("Test BVA : " + flag6);
+				ExtentTestManager.startTest("TestScenario06 : Test BVA");
+				//TimeSheet_ListModule.clickTimesheetSection();
+				Thread.sleep(1000);
+				Timesheet_CreateModule.selectDayRange();
+				Timesheet_CreateModule.selectMonth(DayMonth);
+				Timesheet_CreateModule.selectMonthDay(MonthDay);
+				
+				Timesheet_CreateModule.clicOnNewButton();
+				Thread.sleep(1000);
+				Timesheet_CreateModule.selectProject(project);
+				Thread.sleep(1000);
+				Timesheet_CreateModule.selectModule(moduleName,module);
+				Thread.sleep(1000);
+				Timesheet_CreateModule.enterWorkDescription(workDescription);
+				Thread.sleep(1000);
+				int[] testValues = {-1};
+			    for (int hours1 : testValues) {
+			    Timesheet_CreateModule.enterHours(String.valueOf(hours1));
+			    Thread.sleep(1000);
+			    //Timesheet_CreateModule.clickSave();
+			    boolean flag6 = Timesheet_CreateModule.clickClose();
+			    Thread.sleep(3000);
+				ExtentTestManager.getTest().log(Status.PASS, "Test BVA : " + flag6);
+				Log.info("Test BVA : " + flag6);
 		    }
 		
 		    
-		    
-		    
-		    boolean bool1 = false,bool2 = false,bool3=false,bool4=false,bool5=false,bool6=false,bool7=false,bool8=false,bool9=false,bool10=false,bool11 = false,bool12 = false,bool13=false,bool14=false,bool15=false;
-		  
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		  		
-			    WebElement popupElement1 = driver.findElement(Locators.ifmondayholiday);
-             if (popupElement1.isDisplayed()) {
-            	 bool1=true;
-            	 Log.info("Monday is holiday");
-            	 click(Locators.iftuesdayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//bool11=true;
-		    	Log.info("Monday is not holiday");
-		    	/*
-		    	Timesheet_CreateModule.clicOnNewButton();
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.selectProject(project);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.selectModule(moduleName,module);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterWorkDescription(workDescription);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterHours(hours);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterMinutes(minutes);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.clickSave();
-	 			Thread.sleep(2000);
-			    */
-		    }
-		    
-		   
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement2 = driver.findElement(Locators.ifmondayleave);
-             if (popupElement2.isDisplayed()) {
-            	 bool2=true;
-            	 Log.info("Monday is leave");
-            	 click(Locators.iftuesdayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//if(bool11=false)
-		    	//{
-		    	Log.info("Monday is not leave");
-		    	/*
-		    	Timesheet_CreateModule.clicOnNewButton();
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.selectProject(project);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.selectModule(moduleName,module);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterWorkDescription(workDescription);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterHours(hours);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.enterMinutes(minutes);
-	 			Thread.sleep(1000);
-	 			Timesheet_CreateModule.clickSave();
-	 			Thread.sleep(2000);
-		    	}
-		    	*/
+		    /* AUTHOR : RAJESH GANESH
+		     *  LINE 212 to 250 Updated
+		     *  Those Line of code will Handle Holiday and Leave, 
+		     *  if Holiday/Leave found on specific Day, Those day will be skipped and will enter the Time sheet and Perform Submission
+		     */
+		    List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI");
+
+		    for (String day : days) {
+		        try {
+		            List<WebElement> leaveElements = driver.findElements(
+		                By.xpath("//td[normalize-space(text())='" + day + "']//span[.='L']")
+		            );
+		            List<WebElement> holidayElements = driver.findElements(
+		                By.xpath("//td[normalize-space(text())='" + day + "']//span[.='H']")
+		            );
+
+		            boolean isLeaveVisible = !leaveElements.isEmpty() && leaveElements.get(0).isDisplayed();
+		            boolean isHolidayVisible = !holidayElements.isEmpty() && holidayElements.get(0).isDisplayed();
+		            if (!isLeaveVisible && !isHolidayVisible) {
+		                WebElement cell = driver.findElement(By.xpath("//td[normalize-space(text())='" + day + "']"));
+		                cell.click();
+		                Timesheet_CreateModule.clicOnNewButton();
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.selectProject(project);
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.selectModule(moduleName,module);
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.enterWorkDescription(workDescription);
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.enterHours(hours);
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.enterMinutes(minutes);
+						//Thread.sleep(1000);
+						Timesheet_CreateModule.clickSave();
+						//Thread.sleep(2000);
+		            }
+
+		        } catch (Exception e) {
+		            log.info("Exception for day: " + day + " -> " + e.getMessage());
+		        }
 		    }
 		    
-		    if(bool1==false && bool2==false)
-		    {
-		    Timesheet_CreateModule.clicOnNewButton();
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.selectProject(project);
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.selectModule(moduleName,module);
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.enterWorkDescription(workDescription);
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.enterHours(hours);
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.enterMinutes(minutes);
- 			Thread.sleep(1000);
- 			Timesheet_CreateModule.clickSave();
- 			Thread.sleep(2000);
-		    }
- 			
-             // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
- 		    try {
- 		    	 WebElement popupElement3 = driver.findElement(Locators.iftuesdayholiday);
-              if (popupElement3.isDisplayed()) {
-             	 bool3=true;
-             	 Log.info("Tuesday is holiday");
-             	 click(Locators.ifwednesdayworking);
-              }
- 		    }
- 		    catch(Exception e1)
- 		    {
- 		    	//bool12=true;
- 		    	Log.info("Tuesday is not holiday");
- 		    	/*
- 		    	 click(Locators.iftuesdayworking);
- 		 		   Thread.sleep(1000);
- 		 		   Timesheet_CreateModule.clicOnNewButton();
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.selectProject(project);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.selectModule(moduleName,module);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterWorkDescription(workDescription);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterHours(hours);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterMinutes(minutes);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.clickSave();
- 					Thread.sleep(2000);
- 					*/
- 		    }
- 		    
- 		   
-             // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
- 		    try {
- 		    	 WebElement popupElement4 = driver.findElement(Locators.iftuesdayleave);
-              if (popupElement4.isDisplayed()) {
-             	 bool4=true;
-             	 Log.info("Tuesday is leave");
-             	 click(Locators.ifwednesdayworking);
-              }
- 		    }
- 		    catch(Exception e1)
- 		    {
- 		    	//if(bool12=false)
- 		    	//{
- 		    	Log.info("Tuesday is not leave");
- 		    	/*
- 		    	 click(Locators.iftuesdayworking);
- 		 		   Thread.sleep(1000);
- 		 		   Timesheet_CreateModule.clicOnNewButton();
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.selectProject(project);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.selectModule(moduleName,module);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterWorkDescription(workDescription);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterHours(hours);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.enterMinutes(minutes);
- 					Thread.sleep(1000);
- 					Timesheet_CreateModule.clickSave();
- 					Thread.sleep(2000);
- 		    	}
- 		    	*/
- 		    }
- 		    
- 		   if(bool3==false && bool4==false)
-		    {
- 		   click(Locators.iftuesdayworking);
- 		   Thread.sleep(1000);
- 		   Timesheet_CreateModule.clicOnNewButton();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectProject(project);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectModule(moduleName,module);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterWorkDescription(workDescription);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterHours(hours);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterMinutes(minutes);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.clickSave();
-			Thread.sleep(2000);
+		    Timesheet_CreateModule.finalSubmission();
+		    
+		    
 			
-		    }
-			 
-			
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement5 = driver.findElement(Locators.ifwednesdayholiday);
-             if (popupElement5.isDisplayed()) {
-            	 bool5=true;
-            	 Log.info("Wednesday is holiday");
-            	 click(Locators.ifthursdayworking);
-             }
-		    }
 		    
-		    catch(Exception e1)
-		    {
-		    	//bool13=true;
-		    	Log.info("Wednesday is not holiday");
-		    	/*
-		    	 click(Locators.ifwednesdayworking);
-				   Thread.sleep(1000);
-				   Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-					*/
-		    }
-		    
-		  
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	  WebElement popupElement6 = driver.findElement(Locators.ifwednesdayleave);
-             if (popupElement6.isDisplayed()) {
-            	 bool6=true;
-            	 Log.info("Wednesday is leave");
-            	 click(Locators.ifthursdayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//if(bool13=false)
-		    	//{
-		    	Log.info("Wednesday is not leave");
-		    	/*
-		    	 click(Locators.ifwednesdayworking);
-				   Thread.sleep(1000);
-				   Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-		    	}
-		    	*/
-		    }
-		    
-		    if(bool5==false && bool6==false)
-		    {
-		   click(Locators.ifwednesdayworking);
-		   Thread.sleep(1000);
-		   Timesheet_CreateModule.clicOnNewButton();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectProject(project);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectModule(moduleName,module);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterWorkDescription(workDescription);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterHours(hours);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterMinutes(minutes);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.clickSave();
-			Thread.sleep(2000);
-			
-		    }
-			
-			 
-			
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement7 = driver.findElement(Locators.ifthursdayholiday);
-             if (popupElement7.isDisplayed()) {
-            	 bool7=true;
-            	 Log.info("Thursday is holiday");
-            	 click(Locators.iffridayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//bool14=true;
-		    	Log.info("Thursday is not holiday");
-		    	/*
-		    	 click(Locators.ifthursdayworking);
-				   Thread.sleep(1000);
-				   Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-					*/
-		    }
-		    
-		   
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement8 = driver.findElement(Locators.ifthursdayleave);
-             if (popupElement8.isDisplayed()) {
-            	 bool8=true;
-            	 Log.info("Thursday is leave");
-            	 click(Locators.iffridayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//if(bool14=false)
-		    	//{
-		    	Log.info("Thursday is not leave");
-		    	/*
-		    	 click(Locators.ifthursdayworking);
-				   Thread.sleep(1000);
-				   Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-		    	}
-		    	*/
-		    }
-		    
-		    if(bool7==false && bool8==false)
-		    {
-		   click(Locators.ifthursdayworking);
-		   Thread.sleep(1000);
-		   Timesheet_CreateModule.clicOnNewButton();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectProject(project);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectModule(moduleName,module);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterWorkDescription(workDescription);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterHours(hours);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterMinutes(minutes);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.clickSave();
-			Thread.sleep(2000);
-		    }
-			
-			 
-			
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement9 = driver.findElement(Locators.iffridayholiday);
-             if (popupElement9.isDisplayed()) {
-            	 bool9=true;
-            	 Log.info("Friday is holiday");
-            	 click(Locators.iffridayworking);
-             }
-		    }
-		    catch(Exception e1)
-		    {
-		    	//bool15=false;
-		    	Log.info("Friday is not holiday");
-		    	/*
-		    	 Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-					*/
-		    }
-				
-		    
-		    
-		   
-            // WaitForElementToBeVisible(Locators.slectempdateoftransferyes);
-		    try {
-		    	 WebElement popupElement10 = driver.findElement(Locators.iffridayleave);
-             if (popupElement10.isDisplayed()) {
-            	 bool10=true;
-            	 Log.info("Friday is leave");
-            	 click(Locators.iffridayworking);
-             }
-		    }
-		    catch(Exception e10)
-		    {
-		    	//if(bool15=false)
-		    	//{
-		    	Log.info("friday is not leave");
-		    	/*
-		    	 Timesheet_CreateModule.clicOnNewButton();
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectProject(project);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.selectModule(moduleName,module);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterWorkDescription(workDescription);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterHours(hours);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.enterMinutes(minutes);
-					Thread.sleep(1000);
-					Timesheet_CreateModule.clickSave();
-					Thread.sleep(2000);
-					
-					
-					
-		    	}
-		    	*/
-		    }
-		    
-		    
-		   //lick(Locators.iftuesdayworking);
-		   //Thread.sleep(1000);
-		    if(bool9==false && bool10==false)
-		    {
-		   Timesheet_CreateModule.clicOnNewButton();
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectProject(project);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.selectModule(moduleName,module);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterWorkDescription(workDescription);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterHours(hours);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.enterMinutes(minutes);
-			Thread.sleep(1000);
-			Timesheet_CreateModule.clickSave();
-			Thread.sleep(2000);
-		    }
-			
-			Timesheet_CreateModule.finalSubmission();
-		    //boolean flag7 = Timesheet_CreateModule.selectFaceFinalSubmission();
-		    Thread.sleep(3000);
-			
+		    // Code Ends Here
 			
 			
 			

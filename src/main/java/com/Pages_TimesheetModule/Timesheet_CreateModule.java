@@ -37,6 +37,24 @@ public class Timesheet_CreateModule extends Base_Class
 	        click(PageRepositary.clickOnNewEntry);
 			return false;
 	    }
+	 
+	 public void selectDayRange() throws InterruptedException {
+	        click(PageRepositary.selectDateRange);
+	        Thread.sleep(1000);
+			
+	    }
+	 
+	 public void selectMonth(String DayMonth) throws InterruptedException {
+		 click(PageRepositary.selectMonth);
+		 select(DayMonth, PageRepositary.selectMonth);
+	 }
+	 
+	 public void selectMonthDay(String MonthDay) throws InterruptedException {
+		 click(By.xpath("//span[normalize-space(text())='"+MonthDay+"']"));
+		 Thread.sleep(1000);
+		 click(PageRepositary.ClickOnDateRange);
+		 Thread.sleep(2000);
+	 }
 
 	    public boolean selectProject(String project) throws InterruptedException {
 	    	click(PageRepositary.projectDropdown);
@@ -322,6 +340,11 @@ public class Timesheet_CreateModule extends Base_Class
 			}
 			return false;
 		}
+	    
+	    public boolean validateTimeSheetEntry() {
+	    	
+			return false;
+	    }
 	    
 	    
 	    

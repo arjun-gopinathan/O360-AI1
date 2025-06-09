@@ -3,6 +3,7 @@ package com.test.user.TimesheetModule;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +27,7 @@ import com.extentReports.ExtentManager;
 import com.extentReports.ExtentTestManager;
 import com.listeners.TestListener;
 
-public class AllScenarios_TimesheetWeekandMonth extends Base_Class {
+public class TimesheetCreation extends Base_Class {
 	com.Utility.ExcelReader ExcelReader;
 	Base_Class Base_Class;
 	Log log;
@@ -42,7 +43,7 @@ public class AllScenarios_TimesheetWeekandMonth extends Base_Class {
 	
 	@BeforeSuite
 	public void reference() {
-		ExcelReader = new com.Utility.ExcelReader("TimeSheetModule");
+		ExcelReader = new com.Utility.ExcelReader("TimeSheetNew");
 		log = new Log();
 		TestListener = new TestListener();
 		screenShot = new com.Utility.ScreenShot(null);
@@ -99,92 +100,75 @@ public class AllScenarios_TimesheetWeekandMonth extends Base_Class {
 					   driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				
 				String project = testdata.get("project").toString();
-				String moduleName = testdata.get("moduleName").toString();
-				String module = testdata.get("module").toString();
-				String workDescription = testdata.get("workDescription").toString();
-				String hours = testdata.get("hours").toString();
-				String minutes = testdata.get("minutes").toString();
-				String date = testdata.get("date").toString();
-				String date1 = testdata.get("date1").toString();
-				String Month= testdata.get("Month").toString();
-				String MonthWeek = testdata.get("MonthWeek").toString();
-				String day1 = testdata.get("Valid Day").toString();
-				String projectName = testdata.get("projectName").toString();
-				String DayMonth = testdata.get("DayMonth").toString();
-				String MonthDay = testdata.get("MonthDay").toString();
-				String day2 = testdata.get("VALID DAY IN CAPS").toString();
-				String day3 = testdata.get("New Day").toString();
-				String ProjectName2 = testdata.get("ProjectName2").toString();
+				String moduleName = testdata.get("module").toString();
+				String year = testdata.get("year").toString();
+				String month = testdata.get("month").toString();
+				String day = testdata.get("day").toString();
+				String weekViewRange = testdata.get("range").toString();
+				String pmo = testdata.get("PMO").toString();
+				String pwd = testdata.get("password").toString();
+				String empName = testdata.get("empName").toString();
 				
 				//Navigate to Timesheet Module
+				//TestScenario01 : Navigate To My TimeSheet
 				ExtentTestManager.startTest("TestScenario01 : Navigate To My TimeSheet");
 				boolean flag1 =TimeSheet_ListModule.clickTimesheetSection();
 				ExtentTestManager.getTest().log(Status.PASS, "My timesheet page loaded : " + flag1);
 				Log.info("My timesheet page loaded : " + flag1);
 				
+				//TestScenario02 : Validate Timesheet View, Project and Module Names
 				ExtentTestManager.startTest("TestScenario02 : Validate Timesheet View, Project and Module Names");
 				boolean flag2 = Timeheet_WeekView.ValidateTimeSheetView();
 				ExtentTestManager.getTest().log(Status.PASS, "Timesheet view displayed : " + flag2);
 				Log.info("Timesheet view displayed : " + flag2);
 				
-				//Timesheet_TC14, Timesheet_TC15, Timesheet_TC22
-				ExtentTestManager.startTest("TestScenario03 : Validate Week Detailed View"); 
-				boolean flag3 = Timeheet_WeekView.ValidateWeekDetailedView(project, moduleName, module);
-				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - Week View - weekdays displayed, date ranges for weeks displayed, and days of week listed : " + flag3);
-				Log.info("Timesheet - Week View - weekdays displayed, date ranges for weeks displayed, and days of week listed : " + flag3);
 				
-				/*
-				//Navigate to Timesheet Module Selection for Date
-				ExtentTestManager.startTest("TestScenario04 : Select Year and Week from Drop down");
-				boolean flag4 = Timeheet_WeekView.clickOnYearWeekSelection(Month, MonthWeek);
-				ExtentTestManager.getTest().log(Status.PASS, "Selected Year and Week from Drop down : " + flag4);
-				Log.info("Selected Year and Week from Drop down : " + flag4);
-				
-				ExtentTestManager.startTest("TestScenario05 : Validate TimeSheet Displayed And Week View Entry And Save Without Submit");
-				boolean flag5 = Timeheet_WeekView.ValidateTimeSheetDisplayedAndWeekViewEntryAndSaveWithoutSubmit(project, moduleName,module, day1, projectName,DayMonth, MonthDay);
-				ExtentTestManager.getTest().log(Status.PASS, "My Timesheet displayed : " + flag5);
-				Log.info("My Timesheet displayed : " + flag5);
-				ExtentTestManager.getTest().log(Status.PASS, "Description entered successfully!!!");
-				Log.info("Description entered successfully!!!");
-				ExtentTestManager.getTest().log(Status.PASS, "Timesheet saved successfully!!!");
-				Log.info("Timesheet saved successfully!!!"); 
+				ExtentTestManager.startTest("TestScenario03 : Verify Bulk Update Timesheet in Week view");
+				boolean flag4 = Timeheet_WeekView.validate1(year, month, weekViewRange, project, moduleName);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet Bulk Update : " + flag4);
+				Log.info("Timesheet Bulk Update : " + flag4);
 				
 				
-				ExtentTestManager.startTest("TestScenario06 : Validate Error Message On Invalid Timesheet Entry Week View");
-				Timeheet_WeekView.TearDown();
+				ExtentTestManager.startTest("TestScenario04 : Verify Signle Day Update Timesheet in Week view");
+				boolean flag5 = Timeheet_WeekView.validate2(year, month, weekViewRange, project, moduleName);
+				Timeheet_WeekView.TearDown(month, day);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - Week View - Single Day Log : " + flag5);
+				Log.info("Timesheet - Week View - Single Day Log : " + flag5);
 				
-				boolean flag6 = Timeheet_WeekView.ValidateErrorMessageOnInvalidTimesheetEntryWeekView(project, moduleName,module, day1);
-				ExtentTestManager.getTest().log(Status.PASS, "Required Error message displayed : " + flag6);
-				Log.info("Required Error message displayed : " + flag6);*/
+				ExtentTestManager.startTest("TestScenario05 : Verify Able to Log Timesheet in Day view");
+				boolean flag6 = Timeheet_WeekView.validation3(month, day);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - day view - Days Log : " + flag6);
+				Log.info("Timesheet - day view - Days Log : " + flag6);
 				
-				//ValidateWeeklyNormalView
-				ExtentTestManager.startTest("TestScenario13 : Validating Weekly Normal View"); 
-				boolean flag26 = Timeheet_WeekView.ValidateNavigationToWeeklyNormalView(ProjectName2, moduleName, module);
-				ExtentTestManager.getTest().log(Status.PASS, "Weekly Normal View validated : " + flag26);
-				Log.info("Weekly Normal View validated : " + flag26);
-				
-				//ValidateInvalidHoursErrorMessageWeeklyNormalView
-				ExtentTestManager.startTest("TestScenario14 : Validating Error Message for Invalid Hours In Weekly Normal View"); 
-				boolean flag27 = Timeheet_WeekView.ValidateErrorMessageOnGivingInvalidTimeWeeklyNormalView(ProjectName2, moduleName, module, day2);
-				ExtentTestManager.getTest().log(Status.PASS, "Error Message On Giving Invalid Time Weekly Normal View validated : " + flag27);
-				Log.info("Error Message On Giving Invalid Time Weekly Normal View : " + flag27);
-				
-				//ValidateValidTimeAndUploadFileWeeklyNormalView
-				ExtentTestManager.startTest("TestScenario15 : Validating Valid Time And Upload File In Weekly Normal View"); 
-				boolean flag28 = Timeheet_WeekView.ValidateValidTimeAndUploadFileWeeklyNormalView(ProjectName2, moduleName, module, filePath);
-				ExtentTestManager.getTest().log(Status.PASS, "Valid Time And Upload File In Weekly Normal View validated : " + flag28);
-				Log.info("Valid Time And Upload File In Weekly Normal View validated : " + flag28);
+				ExtentTestManager.startTest("TestScenario06 : Verify Able to do Cancel Request");
+				boolean flag7 = Timeheet_WeekView.validation4();
+				click(userDropDown);
+				click(L_signout);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - day view - Cancel Request : " + flag7);
+				Log.info("Timesheet - day view - Cancel Request : " + flag7);
 				
 				
-				//ValidateTimesheetEntryMonthView
-				ExtentTestManager.startTest("TestScenario16 : Validating Valid Time And Upload File In Monthly View"); 
-				boolean flag29 = Timeheet_WeekView.ValidateTimesheetEntryMonthView(projectName, module, filePath);
-				ExtentTestManager.getTest().log(Status.PASS, "Valid Time And Upload File In Monthly View validated : " + flag29);
-				Log.info("Valid Time And Upload File In Monthly View validated : " + flag29);
-
 				
-		
-			
+				ExtentTestManager.startTest("TestScenario07 : Verify Approve Timesheet Cancel Request");
+				boolean flag8 = Timeheet_WeekView.validation5(pmo, pwd, empName);
+				click(userDropDown);
+				click(L_signout);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - Approve Timesheet Request " + flag8);
+				Log.info("Timesheet - Approve Timesheet Request : " + flag8);
+				
+				ExtentTestManager.startTest("TestScenario08 : Verify after approval Able to Update the Timesheet");
+				boolean flag9 = Timeheet_WeekView.validation6(username, pwd, month, day);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - Week View - After Approval of Cancel request : " + flag9);
+				Log.info("Timesheet - Week View - After Approval of Cancel request : " + flag9);
+				
+				ExtentTestManager.startTest("TestScenario09 : Verify Reject Timesheet Cancel Request");
+				click(userDropDown);
+				click(L_signout);
+				boolean flag10 = Timeheet_WeekView.validation7(pmo, pwd, empName);
+				ExtentTestManager.getTest().log(Status.PASS, "Timesheet - Reject Timesheet cancel Request : " + flag10);
+				Log.info("Timesheet - Reject Timesheet cancel Request : " + flag10);
+				
+				
 				// Logout
 				ExtentTestManager.startTest("Application Logout Initiated.");
 				context.setAttribute("fileName", "Logout");

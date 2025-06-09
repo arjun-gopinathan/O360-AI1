@@ -18,7 +18,6 @@ public class PageRepositary_TimeSheetModule
 	
 	//TimeSheet List Module
 	public By timesheetSection= By.xpath("//span[text()='Self Service']");
-	public By myTimeSheetSection=By.xpath("//span[text()='My Timesheet ']");
 	public By dayViewOption= By.xpath("//span[text()='Day View']");
 	public By weekViewOption= By.xpath("//span[text()=' Week View']");
 	public By monthViewOption= By.xpath("//span[text()='Month View']");
@@ -102,7 +101,7 @@ public class PageRepositary_TimeSheetModule
     public By viewComments= By.xpath("//i[@title='View Comments']");
     
 	public By timeSheetIcon = By.xpath("//span[contains(text(),'Self Service')]/parent::div");
-	public By myTimesheet = By.xpath("//span[contains(text(),'My Timesheet')]");
+	//public By myTimesheet = By.xpath("//span[contains(text(),'My Timesheet')]");
 	public By pageLoad = By.xpath("//li[contains(text(),'Day View')]");
 	public By timeSheetProjectName = By.xpath("//span[contains(text(),'Test')]");
 	public By timeSheetStatus = By.xpath("//span[contains(text(),'LOGGED')]");
@@ -235,11 +234,131 @@ public class PageRepositary_TimeSheetModule
   //span[text()='All Projects']
   //span[text()='All Employees']
   //i[@title='View Comments']
-    
-  
-
-    
-
-
+	
+	//.///////
+	
+	public By selfService = By.xpath("//span[.='Self Service']");
+	public By myTimesheet = By.xpath("//span[normalize-space(.)='My Timesheet']");
+	public By weekScreenView = By.xpath("(//select[contains(@class,'yr-select')])[1]");
+	public By year = By.xpath("(//select[contains(@class,'yr-select')])[2]");
+	public By month = By.xpath("(//select[contains(@class,'yr-select')])[3]");
+	public By weekrange = By.xpath("(//select[contains(@class,'yr-select')])[4]");
+	public By projectName = By.xpath("(//select[contains(@class, 'prjct-select')])[1]");
+	public By moduleName = By.xpath("(//input[@id='Phase'])[1]");
+	
+	public By moduleNameOpt(String moduleOpt) {
+		String stringXpath = "//mat-option/span[contains(normalize-space(text()),'"+moduleOpt+"')]";
+		By moduleName = By.xpath(stringXpath);
+		return moduleName;
+	}
+	
+	public By selectDays = By.xpath("//div[.='Select days']/span");
+	public By selectDaysOpt(String day) {
+		String stringXpath = "//div[.='"+day+"']";
+		By opt = By.xpath(stringXpath);
+		return opt;
+	}
+	
+	public By add = By.xpath("//button[normalize-space(.)='ADD']");
+	//public By dayHourLog = By.xpath("//input[@name='hours']");
+	
+	
+	public By dayHoursLog(String day) {
+		String stringXpath = "//span[@class='calendar' and contains(text(), '"+day+"')]/..//following-sibling::div//input[@name='hours']";
+		By opt = By.xpath(stringXpath);
+		return opt;
+	}
+	
+	public By saveWithOutSubmit = By.xpath("//button[.='Save Without Submit']");
+	
+	public By exp_saveMsg = By.xpath("//span[.='Timesheet data saved successfully.']");
+	//public By dayDescription = By.xpath("(//textarea)[1]");
+	
+	public By dayDescription(String day) {
+		String stringXpath = "//span[@class='calendar' and contains(text(), '"+day+"')]/..//following-sibling::div//textarea";
+		By opt = By.xpath(stringXpath);
+		return opt;
+	}
+	
+	public By addIconInDay(String day) {
+		String stringXpath = "//span[@class='calendar' and contains(text(), '"+day+"')]//following-sibling::button[@title='Add Projects']";
+		By opt = By.xpath(stringXpath);
+		return opt;
+	}
+	
+	public By moduleProjectname = By.xpath("//select[@id='proj']");
+	public By moduleModuleName = By.xpath("//input[@aria-label='EmployeeFullName']");
+	public By moduleAdd = By.xpath("//div[@class='modal-body']//button[.='Add']");
+	
+	
+	public By dateRange = By.xpath("//div[@class='date-range']");
+	public By monthSelect = By.xpath("//select[@title='Select month']");
+	public By weekRange(String date) {
+		String stringXpath = "//span[normalize-space(text())='"+date+"']";
+		By opt = By.xpath(stringXpath);
+		return opt;
+	}
+	
+	public By Leave(String day) {
+		By xpath = By.xpath("//td[normalize-space(text())='" + day + "']//span[.='L']");
+		return xpath;
+	}
+	
+	public By Holiday(String day) {
+		By xpath = By.xpath("//td[normalize-space(text())='" + day + "']//span[.='H']");
+		return xpath;
+	}
+	
+	public By cell(String day) {
+		By xpath = By.xpath("//td[normalize-space(text())='"+day+"']");
+		return xpath;
+	}
+	
+	public By dayViewnewAdd = By.xpath("//button[contains(text(), 'New Entry')]");
+	public By dayViewprojectName = By.xpath("//select[@id='Project']");
+	
+	public By dayViewmodulename = By.xpath("//input[@placeholder='Employee Name']");
+	public By dayViewHourLog = By.xpath("//input[@id='TimespentHours']");
+	public By dayViewMinLog = By.xpath("//input[@id='TimespentMinutes']");
+	public By dayViewSave = By.xpath("//button[.='Save']");
+	
+	public By dayViewSubmit = By.xpath("(//button[contains(text(), 'Submit')])[1]");
+	public By dayViewOK = By.xpath("//button[.='Yes']");
+	public By dayViewCancelRequest = By.xpath("//button[.='Cancel Request']");
+	public By dayViewCancelRequestReason = By.xpath("//label[.='Reason']//following-sibling::div//textarea");
+	public By dayViewModuleCancelRequest = By.xpath("//button[.='Request']");
+	public By dayViewDeleteLog = By.xpath("//a[@title='Delete']");
+	public By exp_dayViewCancelRequest = By.xpath("//div[contains(@class, 'message-autoclose')]//span[.='Requested successfully.']");
+	
+	
+	//Cancel and Approve Submission
+	
+	public By username = By.xpath("//input[@placeholder='Username']");
+	public By password = By.xpath("//input[@placeholder='Password']");
+	public By signin = By.xpath("//button[contains(., 'Sign In')]");
+	public By timesheet = By.xpath("//span[.='Timesheet']");
+	public By cancelRequest = By.xpath("//span[text()='Cancel Request ']");
+	public By searchBtn = By.xpath("(//button[@id='dLabel'])[1]");
+	public By searchValue = By.xpath("//input[@id='SearchValue']");
+	public By moduleSearchBtn = By.xpath("//button[normalize-space(.)='Search']");
+	
+	public By reject(String employeeName) {
+		By xpath = By.xpath("(//span[.='"+employeeName+"']/../../td)[13]//i[@title='Reject']/..");
+		return xpath; 
+	}
+	
+	public By approve(String employeeName) {
+		By xpath = By.xpath("(//span[.='"+employeeName+"']/../../td)[13]//i[@title='Approve']/..");
+		return xpath; 
+	}
+	
+	public By comment = By.xpath("//textarea");
+	public By moduleReject = By.xpath("//button[.='Reject']");
+	public By exp_approvedMessage = By.xpath("//span[.='Request approved successfully.']");
+	public By exp_rejectMessage = By.xpath("//span[.='Request has been rejected.']");
+	
+	public By scrollX = By.xpath("//div[@class='table-wrap']//div[contains(@class,'ps__rail-y')]");
+	
+	
 
 }

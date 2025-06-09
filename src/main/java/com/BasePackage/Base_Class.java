@@ -309,8 +309,8 @@ public  void SetUp1() throws IOException, InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
-		// Select selWeekDayDropDown = new Select(driver.findElement(element));
-		// selWeekDayDropDown.selectByVisibleText(value);
+		Select selWeekDayDropDown = new Select(driver.findElement(element));
+		selWeekDayDropDown.selectByVisibleText(value);
 	}
 
 	public static void clear(By element) throws InterruptedException {
@@ -348,14 +348,22 @@ public  void SetUp1() throws IOException, InterruptedException {
 	}
 
 	public static boolean ElementDisplayed(By locator) throws InterruptedException {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element = driver.findElement(locator);
 		Boolean flag = element.isDisplayed();
 		return flag;
 	}
-
+	
+	public static boolean inVisiblityOfElement(By locator, int time) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		WebElement element = driver.findElement(locator);
+		Boolean flag = element.isDisplayed();
+		return flag;
+	}
+	
 	public static boolean ElementEnabled(By locator) throws InterruptedException {
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
@@ -513,7 +521,7 @@ public  void SetUp1() throws IOException, InterruptedException {
 
 	public static void JavascriptClick(By by, WebDriver driver) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", by);
+		js.executeScript("arguments[0].click();", driver.findElement(by));
 	}
 	
 	public static String generateRandomName() {

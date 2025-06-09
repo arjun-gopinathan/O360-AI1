@@ -18,7 +18,7 @@ public class TimeSheet_ListModule extends Base_Class
 		 public boolean clickTimesheetSection() throws InterruptedException {
 			 click(PageRepositary.timesheetSection);
 		        Thread.sleep(3000);
-		       click(PageRepositary.myTimeSheetSection);
+		       click(PageRepositary.myTimesheet);
 		        return true;
 		    }
 		 

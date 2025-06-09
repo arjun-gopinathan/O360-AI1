@@ -78,18 +78,18 @@ public class AllScenarios_TimeSheet_CancelRequests extends Base_Class  {
 				ExtentTestManager.startTest(testdata.get("TestScenario").toString());
 				Log.info("*** Running test method " + testdata.get("TestScenario").toString() + "...");	
 				context.setAttribute("fileName", "Login");
-				  ExtentTestManager.startTest("Launching O360");
-					 String username = testdata.get("UserName").toString();
-					 ExtentTestManager.endTest();
-					 ExtentTestManager.startTest("User Login");
-						Base_Class.SetUp(username);
-						 ExtentTestManager.endTest();
+				ExtentTestManager.startTest("Launching O360");
+				String username = testdata.get("UserName").toString();
+				ExtentTestManager.endTest();
+				ExtentTestManager.startTest("User Login");
+				Base_Class.SetUp(username);
+				ExtentTestManager.endTest();
 					//Base_Class.SetUp();
-					ExtentTestManager.getTest().log(Status.PASS,
+				ExtentTestManager.getTest().log(Status.PASS,
 							"Application Login" + com.BasePackage.Base_Class.Pagetitle);
-					Log.info("Login successful !");
+				Log.info("Login successful !");
 					
-					   driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 					//Thread.sleep(3000);
 					   //ExtentTestManager.endTest();
 					   ExtentTestManager.startTest("Pop Up Handling");

@@ -119,7 +119,7 @@ public class Timesheet_TimesheetOnBehalf extends Base_Class
 		for (int i=0;i<list1.length;i++)
 		{
 			String val = String.valueOf(i+1);
-			input(By.xpath("(//li[contains(text(),'"+list1[i]+"')]/ancestor::tr/following-sibling::tr//td[@class='data ng-star-inserted'])["+val+"]//input"), "08" + Keys.TAB);
+			input(By.xpath("((//li[contains(text(),'"+list1[i]+"')]/ancestor::tr/following-sibling::tr//td[@class='data ng-star-inserted'])["+val+"]//input)[1]"), "08" + Keys.TAB);
 			
 		}
 		

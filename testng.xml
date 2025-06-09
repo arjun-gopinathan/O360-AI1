@@ -28,13 +28,16 @@
       <class name="com.test.NewPreBoardingUS.AllScenarios_005_ConfirmOnBoarding"/>
       <class name="com.test.employeeapplicationtrackermodule.AllScenarios_QuickTransferApprovals"/>
       <class name="com.test.user.EmpProfile.AllScenarios_Employee_Dependant_Approval"/>
-      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetEditDeleteModule"/>
-      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetWeekandMonth"/>
-      <class name="com.test.user.TimesheetModule.AllScenarios_TimeSheet_CancelRequests"/>
+      
       <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetListModule"/>
-      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetOnBehalf"/>
       <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetCreateModule"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetEditDeleteModule"/>
       <class name="com.test.user.TimesheetModule.AllScenarios_TimeSheet_Approvals"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimeSheet_CancelRequests"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetOnBehalf"/>
+      <class name="com.test.user.TimesheetModule.AllScenarios_TimesheetWeekandMonth"/>
+      
+      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

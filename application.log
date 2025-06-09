@@ -1,0 +1,19 @@
+[INFO ] 2025-06-09 16:59:43.717 [main] Log - *** Running test method TC_TimeSheetModule...
+[INFO ] 2025-06-09 16:59:47.266 [main] Log - Driver has initialized successfully for chromebrowser
+[INFO ] 2025-06-09 17:00:07.595 [main] Log - Title is displayed : Organization 360
+[INFO ] 2025-06-09 17:00:11.888 [main] Log - Successfullly login
+[INFO ] 2025-06-09 17:00:15.966 [main] Log - Login successful !
+[INFO ] 2025-06-09 17:00:19.013 [main] Log - Popup is not displayed for COVID
+[INFO ] 2025-06-09 17:00:19.061 [main] Log - Popup displayed for Desktop.. Clicking OK
+[INFO ] 2025-06-09 17:00:19.143 [main] Log - Handing Desktop Notification Popup
+[INFO ] 2025-06-09 17:00:30.485 [main] Log - My timesheet page loaded : true
+[INFO ] 2025-06-09 17:00:31.716 [main] Log - Timesheet view displayed : true
+[INFO ] 2025-06-09 17:01:21.585 [main] Log - Timesheet Bulk Update : true
+[INFO ] 2025-06-09 17:03:33.293 [main] Log - Timesheet - Week View - Single Day Log : true
+[INFO ] 2025-06-09 17:05:05.011 [main] Log - Timesheet - day view - Days Log : true
+[INFO ] 2025-06-09 17:05:17.563 [main] Log - Timesheet - day view - Cancel Request : true
+[INFO ] 2025-06-09 17:05:55.187 [main] Log - Timesheet - Approve Timesheet Request : true
+[INFO ] 2025-06-09 17:08:30.732 [main] Log - Timesheet - Week View - After Approval of Cancel request : true
+[INFO ] 2025-06-09 17:09:08.515 [main] Log - Timesheet - Reject Timesheet cancel Request : true
+[INFO ] 2025-06-09 17:09:19.197 [main] Log - Logout is done!
+[INFO ] 2025-06-09 17:09:19.297 [main] Log - *** Test Suite TC_TimeSheetModule ending ***

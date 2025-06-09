@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-06-09T16:59:42 IST" name="Default suite" finished-at="2025-06-09T17:09:19 IST" duration-ms="576642">
+    <groups>
+    </groups>
+    <test started-at="2025-06-09T16:59:42 IST" name="Default test" finished-at="2025-06-09T17:09:19 IST" duration-ms="576642">
+      <class name="com.test.user.TimesheetModule.TimesheetCreation">
+        <test-method is-config="true" signature="reference()[pri:0, instance:com.test.user.TimesheetModule.TimesheetCreation@61d6015a]" started-at="2025-06-09T16:59:42 IST" name="reference" finished-at="2025-06-09T16:59:42 IST" duration-ms="557" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reference -->
+        <test-method is-config="true" signature="setupTest(java.lang.reflect.Method)[pri:0, instance:com.test.user.TimesheetModule.TimesheetCreation@61d6015a]" started-at="2025-06-09T16:59:43 IST" name="setupTest" finished-at="2025-06-09T16:59:43 IST" duration-ms="142" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.test.user.TimesheetModule.TimesheetCreation.RUNALL(java.util.Map,org.testng.ITestContext) throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="RUNALL(java.util.Map,org.testng.ITestContext)[pri:0, instance:com.test.user.TimesheetModule.TimesheetCreation@61d6015a]" started-at="2025-06-09T16:59:43 IST" name="RUNALL" data-provider="TestData" finished-at="2025-06-09T17:09:19 IST" duration-ms="575590" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{=, day=1, empName=Clement Joseph, module=Deployment/ Prod Cutover, month= June , password=O360@uaL!tY2O2twO, PMO=Mario.Noronha, project= Projectone , range= JUN 01 - JUN 07 , Run=Yes, TestScenario=TC_TimeSheetModule, UserName=clement.joseph, year=2025}]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@6c65860d]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RUNALL -->
+      </class> <!-- com.test.user.TimesheetModule.TimesheetCreation -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

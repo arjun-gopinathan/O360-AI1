@@ -299,7 +299,7 @@ public  void SetUp1() throws IOException, InterruptedException {
 	}
 
 	public static void click(By element) throws InterruptedException {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 		Thread.sleep(2000);
@@ -585,6 +585,19 @@ public  void SetUp1() throws IOException, InterruptedException {
 	    WebElement element = driver.findElement(locator); // Find the element
 	    JavascriptExecutor js = driver;
 		js.executeScript("arguments[0].scrollIntoView();", element);
+	}
+	
+	public static String getInputText(By element) throws InterruptedException {
+		WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(30));
+		String value = wait2.until(ExpectedConditions.presenceOfElementLocated(element)).getAttribute("value");
+		return value;
+	}
+	
+	public static void doubleClick(By element) {
+		Actions act = new Actions(driver);
+		WebElement btnElement = driver.findElement(element);
+		act.doubleClick(btnElement).perform();
+		
 	}
 	
 	

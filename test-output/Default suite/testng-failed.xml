@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.test.user.TimesheetModule.TimesheetCreation">
+      <class name="com.ExpenseModule.ExpenseModule">
         <methods>
           <include name="reference"/>
-          <include name="RUNALL"/>
+          <include name="RUNALL" invocation-numbers="0"/>
           <include name="setupTest"/>
         </methods>
-      </class> <!-- com.test.user.TimesheetModule.TimesheetCreation -->
+      </class> <!-- com.ExpenseModule.ExpenseModule -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

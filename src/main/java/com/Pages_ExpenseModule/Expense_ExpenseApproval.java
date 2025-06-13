@@ -16,11 +16,11 @@ public class Expense_ExpenseApproval extends Base_Class
 	
 	
 	 public boolean clickExpenseSection() throws InterruptedException {
-		 click(PageRepositary.ExpenseModule1);
+		 click(PageRepositary.expenses);
 	        Thread.sleep(2000);
 	       click(PageRepositary.ApprovalsSection);
 	       Thread.sleep(1000);
-	       click(PageRepositary.Approvals);
+	       click(PageRepositary.expensesApproval);
 	       Thread.sleep(2000);
 	        return true;
 	    }

@@ -92,10 +92,10 @@ public class PageRepositary_LeaveModule
 	public By SendButton= By.xpath("//button[text()='Send cancellation']");
 	public By sendButton2= By.xpath("(//button[text()='Send']/parent::div)[2]");
 	public By CancelLeaveBtn= By.xpath("//button[normalize-space()='Cancel Leave']");
+	public By ShowMore= By.xpath("//*[contains(text(),'Show More')]");
+	public By Sendcancellation = By.xpath("//button[normalize-space()='Send cancellation']");
 	
 	
-	
-
 			
 
 			

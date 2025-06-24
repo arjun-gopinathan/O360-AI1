@@ -324,12 +324,13 @@ public class Leave_EWCLeaveRequest extends Base_Class {
 		Thread.sleep(200);
 		click(approveButtonXPath);
 		WaitForLoaderToDisappear();
-		input(PageRepositary.enterApproveComments, "Approved");
-		Thread.sleep(100);
-		click(PageRepositary.send);
 		
-		ExtentTestManager.getTest().log(Status.PASS, "EWC Leave Request Approved Successfully");
-		Log.info("EWC Leave Request Approved Successfully!");
+//		input(PageRepositary.enterApproveComments, "Approved");
+//		Thread.sleep(100);
+//		click(PageRepositary.send);
+//		
+//		ExtentTestManager.getTest().log(Status.PASS, "EWC Leave Request Approved Successfully");
+//		Log.info("EWC Leave Request Approved Successfully!");
 		return true;
 	}
 

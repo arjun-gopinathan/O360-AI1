@@ -304,7 +304,18 @@ public  void SetUp1() throws IOException, InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 		Thread.sleep(2000);
 	}
+	public static void click_JS(By element) throws InterruptedException {
+	    Thread.sleep(2000);
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	    WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 
+	    // Scroll into view and click using JavaScriptExecutor
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("arguments[0].scrollIntoView(true);", el);
+	    js.executeScript("arguments[0].click();", el);
+
+	    Thread.sleep(2000);
+	}
 	public static void select(String value, By element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

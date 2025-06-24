@@ -144,7 +144,7 @@ public class AllScenarios_EWCLeaveModule extends Base_Class {
 			context.setAttribute("fileName", "Logout"); 
 			click(userDropDown);
 			click(L_signout);
-			String UserName = configloader().getProperty("ApproverUsername");
+			String UserName = configloader().getProperty("EWCApproverUsername");
 			String Password = configloader().getProperty("ApproverPassword");
 			input(L_username, UserName);
 			input(L_password, Password);
@@ -205,7 +205,7 @@ public class AllScenarios_EWCLeaveModule extends Base_Class {
 			context.setAttribute("fileName", "Logout"); 
 			click(userDropDown);
 			click(L_signout);
-			String UserName2 = configloader().getProperty("ApproverUsername");
+			String UserName2 = configloader().getProperty("EWCApproverUsername");
 			String Password2 = configloader().getProperty("ApproverPassword");
 			input(L_username, UserName2);
 			input(L_password, Password2);
@@ -260,7 +260,7 @@ public class AllScenarios_EWCLeaveModule extends Base_Class {
 			context.setAttribute("fileName", "Logout"); 
 			click(userDropDown);
 			click(L_signout);
-			String UserName4 = configloader().getProperty("ApproverUsername");
+			String UserName4 = configloader().getProperty("EWCApproverUsername");
 			String Password4 = configloader().getProperty("ApproverPassword");
 			input(L_username, UserName4);
 			input(L_password, Password4);

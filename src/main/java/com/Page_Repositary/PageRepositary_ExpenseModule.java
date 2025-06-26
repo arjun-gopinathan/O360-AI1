@@ -129,7 +129,7 @@ public class PageRepositary_ExpenseModule
 	public By rejectSuccessMsg = By.xpath("//span[.='Expense rejected successfully.']");
 	
 	public By rejectTab = By.xpath("(//div[.='Rejected'])[2]");
-	
+	public By remindMe = By.xpath("//button[normalize-space(text())='Remind Me Later']");	
 	
 	
 			

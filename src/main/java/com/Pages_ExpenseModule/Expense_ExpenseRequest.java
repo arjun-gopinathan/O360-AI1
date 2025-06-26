@@ -335,6 +335,13 @@ public class Expense_ExpenseRequest extends Base_Class
 		input(PageRepositary.password, password);
 		click(PageRepositary.signin);
 		
+		try {
+			 click(PageRepositary.remindMe);
+		 } catch (Exception e) { }
+
+
+
+		
 		click(PageRepositary.expenses);
 		click(PageRepositary.ApprovalsSection);
 		click(PageRepositary.expensesApproval);
@@ -374,7 +381,9 @@ public class Expense_ExpenseRequest extends Base_Class
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+			 try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			
 			click(PageRepositary.expenses);
 			click(PageRepositary.ApprovalsSection);
@@ -409,10 +418,14 @@ public class Expense_ExpenseRequest extends Base_Class
 			input(PageRepositary.username, thirdLevelUserName);
 			input(PageRepositary.password, pwd);
 			click(PageRepositary.signin);
-			
+			try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			
 			click(PageRepositary.expenses);
+			WaitForElementToBeVisible(PageRepositary.ApprovalsSection);
 			click(PageRepositary.ApprovalsSection);
+			WaitForElementToBeVisible(PageRepositary.expensesApproval);
 			click(PageRepositary.expensesApproval);
 			
 			click(PageRepositary.searchIcon);
@@ -444,7 +457,9 @@ public class Expense_ExpenseRequest extends Base_Class
 			 input(PageRepositary.username, username);
 			 input(PageRepositary.password, pwd);
 			 click(PageRepositary.signin);
-			
+			 try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			
 			 click(PageRepositary.timesheetSection);
 			 click(PageRepositary.myExpense);
@@ -466,7 +481,9 @@ public class Expense_ExpenseRequest extends Base_Class
 			 input(PageRepositary.username, billVerificationUserName);
 			 input(PageRepositary.password, pwd);
 			 click(PageRepositary.signin);
-			
+			 try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			
 			 click(PageRepositary.expenses);
 			 click(PageRepositary.ApprovalsSection);
@@ -496,8 +513,11 @@ public class Expense_ExpenseRequest extends Base_Class
 			
     	   input(PageRepositary.username, accountVerificationUserName);
 			 input(PageRepositary.password, pwd);
-			 click(PageRepositary.signin);
-			
+			 Thread.sleep(Duration.ofSeconds(2));
+			 JavascriptClick(PageRepositary.signin,driver);
+			 try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			 click(PageRepositary.expenses);
 			 click(PageRepositary.ApprovalsSection);
 		 
@@ -551,7 +571,9 @@ public class Expense_ExpenseRequest extends Base_Class
     	    input(PageRepositary.username, username);
 			 input(PageRepositary.password, pwd);
 			 click(PageRepositary.signin);
-			
+			 try {
+				 click(PageRepositary.remindMe);
+			 } catch (Exception e) { }
 			 click(PageRepositary.timesheetSection);
 			 click(PageRepositary.myExpense);
 		 
@@ -572,7 +594,9 @@ public class Expense_ExpenseRequest extends Base_Class
   		input(PageRepositary.username, firstLevel);
   		input(PageRepositary.password, pwd);
   		click(PageRepositary.signin);
-  		
+  		try {
+			 click(PageRepositary.remindMe);
+		 } catch (Exception e) { }
   		click(PageRepositary.expenses);
   		click(PageRepositary.ApprovalsSection);
   		click(PageRepositary.expensesApproval);
@@ -599,7 +623,9 @@ public class Expense_ExpenseRequest extends Base_Class
     	  	input(PageRepositary.username, username);
 	  		input(PageRepositary.password, pwd);
     		click(PageRepositary.signin);
-    		
+    		try {
+   			 click(PageRepositary.remindMe);
+   		 } catch (Exception e) { }
     		click(PageRepositary.timesheetSection);
    		 	click(PageRepositary.myExpense);
    		 	Thread.sleep(Duration.ofSeconds(2));

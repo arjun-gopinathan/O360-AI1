@@ -162,6 +162,8 @@ public class TimesheetCreation extends Base_Class {
 				Log.info("Timesheet - Week View - After Approval of Cancel request : " + flag9);
 				
 				ExtentTestManager.startTest("TestScenario09 : Verify Reject Timesheet Cancel Request");
+				WaitForElementToBeVisible(userDropDown);
+				Thread.sleep(Duration.ofSeconds(2));
 				click(userDropDown);
 				click(L_signout);
 				boolean flag10 = Timeheet_WeekView.validation7(pmo, pwd, empName);

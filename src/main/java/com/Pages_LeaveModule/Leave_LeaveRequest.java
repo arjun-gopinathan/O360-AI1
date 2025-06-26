@@ -1,6 +1,11 @@
 package com.Pages_LeaveModule;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.BasePackage.Base_Class;
@@ -39,7 +44,7 @@ public class Leave_LeaveRequest extends Base_Class
 	 
 	 public boolean selectLeaveType(String leaveType) throws InterruptedException {
 		 WaitForLoaderToDisappear();
-		 click(By.xpath("//div[contains(text(),'"+leaveType+"')]"));
+		 click_JS(By.xpath("//div[contains(text(),'"+leaveType+"')]"));
 		 
 		 Thread.sleep(2000);
 	        return true;
@@ -79,7 +84,7 @@ public class Leave_LeaveRequest extends Base_Class
 			 Thread.sleep(1000);
 			 click(By.xpath("//div[contains(text(),'"+toYear+"')]"));
 			 Thread.sleep(1000);
-			 click(By.xpath("//div[contains(text(),'"+toMonth+"')]"));
+			 click(By.xpath("//div[contains(text(),'"+fromMonth+"')]"));
 			 Thread.sleep(1000);
 			 click(By.xpath("//tbody/tr/td/div[contains(text(),'"+toDate+"')]"));
 			 try {
@@ -232,6 +237,56 @@ public class Leave_LeaveRequest extends Base_Class
 			return true;
 		 
 		}
+	 
+	 
+	 public boolean CancelLeaveRequestWithDate(String CancelComments, String leaveType, String fromYear,
+				String fromMonth, String fromDate1, String toYear, String toMonth, String toDate, String duration,
+				String Reason, String Employee) throws InterruptedException {
+			String Year = fromMonth;
+			String Month = fromYear;
+			String Date = fromDate1;
+			String formattedDate = getFormattedDate(Date, Month, Year);
+			String xpath = "//span[contains(text(),'" + formattedDate + " - " + formattedDate
+					+ "')]/ancestor::div[contains(@class,'d-flex')][1]//img[@title='Cancel Leave']";
+			WaitForLoaderToDisappear();
+			ScrollUntilElementVisible(PageRepositary.CancelLeave);
+			Thread.sleep(1000);
+			click_JS(PageRepositary.ShowMore);
+			WaitForLoaderToDisappear();
+			Thread.sleep(1000);
+			ScrollUntilElementVisible(PageRepositary.CancelLeave);
+			WebElement element = driver.findElement(By.xpath(xpath));
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", element);
+			js.executeScript("arguments[0].click();", element);
+			Thread.sleep(1000);
+			input(PageRepositary.EnterComments, CancelComments);
+			Thread.sleep(1000);
+			click_JS(PageRepositary.CancelLeaveBtn);
+			Thread.sleep(1000);
+			click_JS(PageRepositary.clickOnOkButton);
+			Thread.sleep(1000);
+			return true;
+		}
+	 
+	 public static String getFormattedDate(String day, String month, String year) {
+	        try {
+	            // Convert inputs to a date
+	            String inputDate = day + "-" + month.substring(0, 3) + "-" + year;
+
+	            // Parse using custom input format with uppercase month
+	            SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+	            Date date = inputFormat.parse(inputDate);
+
+	            // Output format as required
+	            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+	            return outputFormat.format(date); // returns like "16-May-2025"
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+	 
 	 
 	 public boolean clickOnEWCModuleApproval() throws InterruptedException {
 		 click(PageRepositary.LeaveSection);

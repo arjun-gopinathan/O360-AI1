@@ -420,20 +420,26 @@ public class Timeheet_WeekView extends Base_Class
 
 	    for (String day : days) {
 	        try {
+	        	Thread.sleep(Duration.ofSeconds(2));
 	            List<WebElement> leaveElements = driver.findElements(PageRepositary.Leave(day));
 	            List<WebElement> holidayElements = driver.findElements(PageRepositary.Holiday(day));
-
+	            Thread.sleep(Duration.ofSeconds(2));
+	            
 	            boolean isLeaveVisible = !leaveElements.isEmpty() && leaveElements.get(0).isDisplayed();
 	            boolean isHolidayVisible = !holidayElements.isEmpty() && holidayElements.get(0).isDisplayed();
+	            Thread.sleep(Duration.ofSeconds(2));
+	            
 	            if (!isLeaveVisible && !isHolidayVisible) {
 	            	JavascriptClick(PageRepositary.cell(day), driver);
 	            	JavascriptClick(PageRepositary.dayViewDeleteLog, driver);
+	            	Thread.sleep(Duration.ofSeconds(2));
 	            	click(PageRepositary.dayViewOK);
 	            }
 
 	        } catch (Exception e) {
 	            System.out.println(e);
 	        }
+	        Thread.sleep(Duration.ofSeconds(2));
 	    }
 	    
 	    Thread.sleep(Duration.ofSeconds(5));
@@ -501,7 +507,8 @@ public class Timeheet_WeekView extends Base_Class
 		
 		String[] days = {"Thursday", "Friday"};
 		for(String day : days) {
-			click(PageRepositary.addIconInDay(day));
+			Thread.sleep(Duration.ofSeconds(2));
+			JavascriptClick(PageRepositary.addIconInDay(day), driver);
 			select(project, PageRepositary.moduleProjectname);
 			
 			input(PageRepositary.moduleModuleName, moduleName);
@@ -546,12 +553,17 @@ public class Timeheet_WeekView extends Base_Class
 
 	    for (String day : days) {
 	        try {
+	        	Thread.sleep(Duration.ofSeconds(1));
 	            List<WebElement> leaveElements = driver.findElements(PageRepositary.Leave(day));
 	            List<WebElement> holidayElements = driver.findElements(PageRepositary.Holiday(day));
-
+	            Thread.sleep(Duration.ofSeconds(2));
+	            
 	            boolean isLeaveVisible = !leaveElements.isEmpty() && leaveElements.get(0).isDisplayed();
 	            boolean isHolidayVisible = !holidayElements.isEmpty() && holidayElements.get(0).isDisplayed();
+	            Thread.sleep(Duration.ofSeconds(2));
+	            
 	            if (!isLeaveVisible && !isHolidayVisible) {
+	            	Thread.sleep(Duration.ofSeconds(2));
 	               JavascriptClick(PageRepositary.cell(day), driver);
 	               JavascriptClick(PageRepositary.dayViewnewAdd, driver);
 	               select("Projectone", PageRepositary.dayViewprojectName);
@@ -560,6 +572,7 @@ public class Timeheet_WeekView extends Base_Class
 	               input(PageRepositary.dayViewHourLog, "08");
 	               input(PageRepositary.dayViewMinLog, "00");
 	               click(PageRepositary.dayViewSave);
+	            	Thread.sleep(Duration.ofSeconds(3));
 	            }
 
 	        } catch (Exception e) {
@@ -583,7 +596,7 @@ public class Timeheet_WeekView extends Base_Class
 	public boolean validation4() throws InterruptedException {
 	    JavascriptClick(PageRepositary.dayViewCancelRequest, driver);
 	    input(PageRepositary.dayViewCancelRequestReason, "data");
-	    click(PageRepositary.dayViewModuleCancelRequest);
+	    JavascriptClick(PageRepositary.dayViewModuleCancelRequest, driver);
 	    boolean flag = ElementDisplayed(PageRepositary.exp_dayViewCancelRequest);
 		return flag;
 	   
@@ -648,7 +661,7 @@ public class Timeheet_WeekView extends Base_Class
 	    click(PageRepositary.dayViewOK);
 	    JavascriptClick(PageRepositary.dayViewCancelRequest, driver);
 	    input(PageRepositary.dayViewCancelRequestReason, "data");
-	    click(PageRepositary.dayViewModuleCancelRequest);
+	    JavascriptClick(PageRepositary.dayViewModuleCancelRequest, driver);
 	    
 		
 		return flag;

@@ -1,44 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-13T22:10:18 IST" name="Default suite" finished-at="2025-06-13T22:19:18 IST" duration-ms="540123">
+  <suite started-at="2025-06-25T19:55:37 IST" name="Default suite" finished-at="2025-06-25T20:04:29 IST" duration-ms="531963">
     <groups>
     </groups>
-    <test started-at="2025-06-13T22:10:18 IST" name="Default test" finished-at="2025-06-13T22:19:18 IST" duration-ms="540123">
-      <class name="com.ExpenseModule.ExpenseModule">
-        <test-method is-config="true" signature="reference()[pri:0, instance:com.ExpenseModule.ExpenseModule@524d6d96]" started-at="2025-06-13T22:10:17 IST" name="reference" finished-at="2025-06-13T22:10:18 IST" duration-ms="897" status="PASS">
+    <test started-at="2025-06-25T19:55:37 IST" name="Default test" finished-at="2025-06-25T20:04:29 IST" duration-ms="531963">
+      <class name="com.test.LeaveModule.AllScenarios_LeaveModule">
+        <test-method is-config="true" signature="reference()[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T19:55:37 IST" name="reference" finished-at="2025-06-25T19:55:37 IST" duration-ms="545" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reference -->
-        <test-method is-config="true" signature="setupTest(java.lang.reflect.Method)[pri:0, instance:com.ExpenseModule.ExpenseModule@524d6d96]" started-at="2025-06-13T22:10:19 IST" name="setupTest" finished-at="2025-06-13T22:10:19 IST" duration-ms="168" status="PASS">
+        <test-method is-config="true" signature="setupTest(java.lang.reflect.Method)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T19:55:38 IST" name="setupTest" finished-at="2025-06-25T19:55:38 IST" duration-ms="88" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.ExpenseModule.ExpenseModule.RUNALL(java.util.Map,org.testng.ITestContext) throws java.io.IOException,java.lang.InterruptedException]]>
+                <![CDATA[public void com.test.LeaveModule.AllScenarios_LeaveModule.RUNALL(java.util.Map,org.testng.ITestContext) throws java.io.IOException,java.lang.InterruptedException]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupTest -->
-        <test-method signature="RUNALL(java.util.Map,org.testng.ITestContext)[pri:0, instance:com.ExpenseModule.ExpenseModule@524d6d96]" started-at="2025-06-13T22:10:19 IST" name="RUNALL" data-provider="TestData" finished-at="2025-06-13T22:19:18 IST" duration-ms="538562" status="PASS">
+        <test-method signature="RUNALL(java.util.Map,org.testng.ITestContext)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T19:55:38 IST" name="RUNALL" data-provider="TestData" finished-at="2025-06-25T20:04:29 IST" duration-ms="530912" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{accountVerificationUserName=ratna.meenakshi, accVerificationPaymentOn= Aug : 2025 , accVerificationPaymentStatus= Payroll Processed , amount=122, billVerificationStatus= Bill Verification Completed , billVerificationUserName=sajitha.rahul, currency= INR , day=10, empName=Clement Joseph, expenseType=Operational Expense:Accomodation Expense, firstLevel=Vivek.Nair, month=JUN, Password=O360@uaL!tY2O2twO, paymentStatus= Payment Done , project=Projectone, Run=Yes, SecondLevel=Satish.Ganta, status= Only Reimbursable , TestScenario=TC_TimeSheetModule, thirdLevel=KP.Hari, UserName=clement.joseph, year=2025}]]>
+                <![CDATA[{=, CancelComments=Cancelling Leave Request, duration= Full Day , Employee=Linita Shivalkar, EmployeeName=Clement Joseph , fromDate1=29, fromMonth=JUL, fromYear=2025, leaveType=Casual Leave, Reason=Test Reason Added, Run=Yes, TestScenario=TC_LeaveRequest, toDate=29, toMonth=JUL, toYear=2025}]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[org.testng.TestRunner@20e6c4dc]]>
+                <![CDATA[org.testng.TestRunner@e4b6f47]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RUNALL -->
-      </class> <!-- com.ExpenseModule.ExpenseModule -->
+        <test-method is-config="true" signature="setupTest(java.lang.reflect.Method)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T20:04:29 IST" name="setupTest" finished-at="2025-06-25T20:04:29 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.test.LeaveModule.AllScenarios_LeaveModule.RUNALL(java.util.Map,org.testng.ITestContext) throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="RUNALL(java.util.Map,org.testng.ITestContext)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T20:04:29 IST" name="RUNALL" data-provider="TestData" finished-at="2025-06-25T20:04:29 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{=, CancelComments=, duration= Full Day , Employee=, EmployeeName=, fromDate1=, fromMonth=, fromYear=, leaveType=Floating Holidays, Reason=, Run=, TestScenario=, toDate=, toMonth=, toYear=}]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@e4b6f47]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RUNALL -->
+        <test-method is-config="true" signature="setupTest(java.lang.reflect.Method)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T20:04:29 IST" name="setupTest" finished-at="2025-06-25T20:04:29 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.test.LeaveModule.AllScenarios_LeaveModule.RUNALL(java.util.Map,org.testng.ITestContext) throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="RUNALL(java.util.Map,org.testng.ITestContext)[pri:0, instance:com.test.LeaveModule.AllScenarios_LeaveModule@7bd7d6d6]" started-at="2025-06-25T20:04:29 IST" name="RUNALL" data-provider="TestData" finished-at="2025-06-25T20:04:29 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{=, CancelComments=, duration= Afternoon , Employee=, EmployeeName=, fromDate1=, fromMonth=, fromYear=, leaveType=Sick Leave, Reason=, Run=, TestScenario=, toDate=, toMonth=, toYear=}]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@e4b6f47]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RUNALL -->
+      </class> <!-- com.test.LeaveModule.AllScenarios_LeaveModule -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

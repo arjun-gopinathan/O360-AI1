@@ -47,7 +47,7 @@ public class AllScenarios_LeaveModule extends Base_Class {
 		Leave_LeaveRequest= new Leave_LeaveRequest();
 
 	}
-	@BeforeMethod
+	@BeforeMethod 
 	public void setupTest(Method method) {
 	    // Get the test class name
 	    String className = method.getDeclaringClass().getSimpleName();
@@ -139,11 +139,11 @@ public class AllScenarios_LeaveModule extends Base_Class {
 			Leave_LeaveRequest.leaveRequestForm(leaveType, fromYear, fromMonth, fromDate1 ,toYear, toMonth, toDate, duration,Reason,Employee );
 			boolean flag7 = Leave_LeaveRequest.submitButton();
 			ExtentTestManager.getTest().log(Status.PASS, "Validated Leave Request Submit Button Functionality : " + flag7);
-			Log.info("Validated Leave Request Submit Button Functionality : " + flag7);
+//			Log.info("Validated Leave Request Submit Button Functionality : " + flag7);
 			
 			//Validated Cancel Leave Request Functionality
-			ExtentTestManager.startTest("TestScenario07 : Cancel Leave Request Functionality");
-			boolean flag8 = Leave_LeaveRequest.CancelLeaveRequest(CancelComments);
+			ExtentTestManager.startTest("TestScenario08 : Cancel Leave Request Functionality");
+			boolean flag8 = Leave_LeaveRequest.CancelLeaveRequestWithDate(CancelComments, toDate, toMonth, toYear, fromDate1, fromMonth, fromYear, fromYear, leaveType, fromYear, Reason);
 			ExtentTestManager.getTest().log(Status.PASS, "Validated Cancel Leave Request Functionality : " + flag8);
 			Log.info("Validated Cancel Leave Request Functionality : " + flag8);
 			

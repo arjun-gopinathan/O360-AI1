@@ -29,7 +29,7 @@ import com.extentReports.ExtentManager;
 import com.extentReports.ExtentTestManager;
 import com.listeners.TestListener;
 
-public class ExpenseModule extends Base_Class {
+public class AllScenariosExpenseModule extends Base_Class {
 	com.Utility.ExcelReader ExcelReader;
 	Base_Class Base_Class;
 	Log log;
@@ -44,7 +44,7 @@ public class ExpenseModule extends Base_Class {
 	public static By username = By.xpath("//input[@name='Username']");
 	public static By password = By.xpath("//input[@name='Password']");
 	public static By signin = By.xpath("//button[normalize-space(.)='Sign In']");
-	
+	public static By remindMe = By.xpath("//button[normalize-space(text())='Remind Me Later']");	
 	@BeforeSuite
 	public void reference() {
 		ExcelReader = new com.Utility.ExcelReader("Expenses");
@@ -149,7 +149,7 @@ public class ExpenseModule extends Base_Class {
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Second Level user approve the Expenses");
+				ExtentTestManager.startTest("TestScenario06 : Verify Second Level user approve the Expenses");
 				boolean flag6 = Expense_ExpenseRequest.validate6(secondLevel, pwd, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Second Level user approve the Expenses : " + flag6);
 				Log.info("Expenses Added : " + flag6);
@@ -157,41 +157,41 @@ public class ExpenseModule extends Base_Class {
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Third Level user approve the Expenses");
+				ExtentTestManager.startTest("TestScenario07 : Verify Third Level user approve the Expenses");
 				boolean flag7 = Expense_ExpenseRequest.validate7(thirdLevel, pwd, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Third Level user approve the Expenses : " + flag7);
 				Log.info("Expenses Added : " + flag7);
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Expenses is moved to Approval Section after 3 levels of approval");
+				ExtentTestManager.startTest("TestScenario08 : Verify Expenses is moved to Approval Section after 3 levels of approval");
 				boolean flag8 = Expense_ExpenseRequest.validate8(username, pwd, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Expenses is moved to Approval Section after 3 levels of approval : " + flag8);
 				Log.info("Expenses Added : " + flag8);
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Expenses Bill Verification");
+				ExtentTestManager.startTest("TestScenario09 : Verify Expenses Bill Verification");
 				boolean flag9 = Expense_ExpenseRequest.validate9(billVerificationUserName, pwd, billVerificationStatus, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Expenses Bill Verification : " + flag9);
 				Log.info("Expenses Added : " + flag9);
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Expenses Account Verification ");
+				ExtentTestManager.startTest("TestScenario10 : Verify Expenses Account Verification ");
 				boolean flag10 = Expense_ExpenseRequest.validate10(accountVerificationUserName, pwd, accVerificationPaymentStatus, accVerificationPaymentOn, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Expenses Account Verification : " + flag10);
 				Log.info("Expenses Added : " + flag10);
 				
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Payment Release");
+				ExtentTestManager.startTest("TestScenario11 : Verify Payment Release");
 				boolean flag11 = Expense_ExpenseRequest.validate11(paymentStatus, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Payment Release : " + flag11);
 				Log.info("Expenses Added : " + flag11);
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify After payment is Done expenses status is changed");
+				ExtentTestManager.startTest("TestScenario12 : Verify After payment is Done expenses status is changed");
 				boolean flag12 = Expense_ExpenseRequest.validate12(username, pwd, expNumber);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify After payment is Done expenses status is changed : " + flag12);
 				Log.info("Expenses Added : " + flag12);
@@ -199,9 +199,12 @@ public class ExpenseModule extends Base_Class {
 				click(L_signout);
 				
 				ExtentTestManager.startTest("TestScenario01 : Verify able to Reject Expenses");
-				input(ExpenseModule.username, username);
-		  		input(ExpenseModule.password, pwd);
-		  		click(ExpenseModule.signin);
+				input(AllScenariosExpenseModule.username, username);
+		  		input(AllScenariosExpenseModule.password, pwd);
+		  		click(AllScenariosExpenseModule.signin);
+		  		try {
+					 click(remindMe);
+				 } catch (Exception e) { }
 				boolean flag01 = Expense_ExpenseRequest.validate1(year, month, day, project, currency, expenseType, amount, status, filePath);
 				Map<String, Object> rejectResult = Expense_ExpenseRequest.validate2();
 				String expNumberRej = rejectResult.get("expNumber").toString();
@@ -214,7 +217,7 @@ public class ExpenseModule extends Base_Class {
 				click(userDropDown);
 				click(L_signout);
 				
-				ExtentTestManager.startTest("TestScenario01 : Verify Rejected Expenses is listed in Rejected Section");
+				ExtentTestManager.startTest("TestScenario13 : Verify Rejected Expenses is listed in Rejected Section");
 				boolean flag14 = Expense_ExpenseRequest.validate14(username, pwd, expNumberRej);
 				ExtentTestManager.getTest().log(Status.PASS, "Verify Rejected Expenses is listed in Rejected Section : " + flag14);
 				Log.info("Expenses Added : " + flag14);

@@ -1,28 +1,22 @@
-[INFO ] 2025-06-13 22:10:19.680 [main] Log - *** Running test method TC_TimeSheetModule...
-[INFO ] 2025-06-13 22:10:22.908 [main] Log - Driver has initialized successfully for chromebrowser
-[INFO ] 2025-06-13 22:10:46.618 [main] Log - Title is displayed : Organization 360
-[INFO ] 2025-06-13 22:10:49.255 [main] Log - Successfullly login
-[INFO ] 2025-06-13 22:10:53.478 [main] Log - Login successful !
-[INFO ] 2025-06-13 22:10:56.543 [main] Log - Popup is not displayed for COVID
-[INFO ] 2025-06-13 22:10:56.666 [main] Log - Popup displayed for Desktop.. Clicking OK
-[INFO ] 2025-06-13 22:10:57.042 [main] Log - Handing Desktop Notification Popup
-[INFO ] 2025-06-13 22:11:48.359 [main] Log - path is :C:\Users\rajesh.ganesh\OneDrive - Speridian Technologies\Desktop\Automation\O360-AI1
-[INFO ] 2025-06-13 22:11:49.258 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:11:49.912 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:11:49.912 [main] Log - EXPSPIND906
-[INFO ] 2025-06-13 22:12:08.110 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:12:21.932 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:13:01.309 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:13:46.577 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:13:46.578 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:14:27.208 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:14:52.123 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:15:20.669 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:15:55.675 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:16:18.712 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:16:44.626 [main] Log - Expenses Added : false
-[INFO ] 2025-06-13 22:17:46.058 [main] Log - path is :C:\Users\rajesh.ganesh\OneDrive - Speridian Technologies\Desktop\Automation\O360-AI1
-[INFO ] 2025-06-13 22:18:42.280 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:19:10.620 [main] Log - Expenses Added : true
-[INFO ] 2025-06-13 22:19:18.057 [main] Log - Logout is done!
-[INFO ] 2025-06-13 22:19:18.226 [main] Log - *** Test Suite TC_TimeSheetModule ending ***
+[INFO ] 2025-06-25 19:55:38.692 [main] Log - *** Running test method TC_LeaveRequest...
+[INFO ] 2025-06-25 19:55:40.766 [main] Log - Driver has initialized successfully for chromebrowser
+[INFO ] 2025-06-25 19:55:57.801 [main] Log - Title is displayed : Organization 360
+[INFO ] 2025-06-25 19:56:30.231 [main] Log - Popup is not displayed for COVID
+[INFO ] 2025-06-25 19:56:33.371 [main] Log - Login successful !
+[INFO ] 2025-06-25 19:56:49.879 [main] Log - All the Details Visible Properly
+[INFO ] 2025-06-25 19:56:49.882 [main] Log - Leave Dashboard Displayed : true
+[INFO ] 2025-06-25 19:57:09.416 [main] Log - Selected Leave Module : true
+[INFO ] 2025-06-25 19:57:25.332 [main] Log - Validated My Statement : true
+[INFO ] 2025-06-25 19:57:25.377 [main] Log - All the Leave Type Appeared Properly
+[INFO ] 2025-06-25 19:57:25.378 [main] Log - Validated Leave Type : true
+[INFO ] 2025-06-25 19:57:31.853 [main] Log - Validated Leave Request Form Mandatory Field : true
+[INFO ] 2025-06-25 20:00:11.313 [main] Log - No timesheet saved for 
+[INFO ] 2025-06-25 20:00:35.894 [main] Log - Modal closed : 
+[INFO ] 2025-06-25 20:00:54.420 [main] Log - Validated Cancel Leave Request Functionality : true
+[INFO ] 2025-06-25 20:01:00.581 [main] Log - Validated Leave Request Form Mandatory Field : true
+[INFO ] 2025-06-25 20:03:39.914 [main] Log - No timesheet saved for 
+[INFO ] 2025-06-25 20:04:04.415 [main] Log - Modal closed : 
+[INFO ] 2025-06-25 20:04:04.416 [main] Log - Validated Leave Request Submit Button Functionality : true
+[INFO ] 2025-06-25 20:04:04.416 [main] Log - Logging out and logging in as Approver.
+[INFO ] 2025-06-25 20:04:29.138 [main] Log - Logout is done!
+[INFO ] 2025-06-25 20:04:29.596 [main] Log - *** Test Suite TC_LeaveRequest ending ***
